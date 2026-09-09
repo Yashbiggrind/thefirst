@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>YASH — Essential T-Shirt</title>
+
+<meta name="description" content="YASH Essential T-Shirt — understated design, everyday comfort.">
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #f7f7f5;
+    color: #111;
+    line-height: 1.5;
+}
+
+button,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.navbar {
+    height: 76px;
+    padding: 0 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(247,247,245,0.94);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid #e5e5e2;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 34px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #111;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    opacity: .55;
+}
+
+.cart-button {
+    border: 1px solid #111;
+    background: transparent;
+    padding: 10px 17px;
+    border-radius: 30px;
+    font-size: 13px;
+    transition: .2s;
+}
+
+.cart-button:hover {
+    background: #111;
+    color: white;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: calc(100vh - 76px);
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    align-items: center;
+    max-width: 1500px;
+    margin: auto;
+    padding: 70px 6%;
+    gap: 80px;
+}
+
+.product-image-container {
+    background: #eeeeeb;
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.product-image {
+    width: 88%;
+    max-width: 760px;
+    height: auto;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    transition: transform .5s ease;
+}
+
+.product-image-container:hover .product-image {
+    transform: scale(1.025);
+}
+
+/* =========================
+   PRODUCT INFORMATION
+========================= */
+
+.product-info {
+    max-width: 520px;
+}
+
+.eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #777;
+    margin-bottom: 18px;
+}
+
+.product-title {
+    font-size: clamp(48px, 6vw, 78px);
+    line-height: .95;
+    letter-spacing: -4px;
+    margin-bottom: 25px;
+}
+
+.product-description {
+    color: #666;
+    font-size: 16px;
+    max-width: 440px;
+    margin-bottom: 30px;
+}
+
+.price {
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 32px;
+}
+
+/* =========================
+   SIZE SELECTOR
+========================= */
+
+.selector-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.sizes {
+    display: flex;
+    gap: 9px;
+    margin-bottom: 28px;
+}
+
+.size {
+    width: 55px;
+    height: 48px;
+    background: transparent;
+    border: 1px solid #d0d0cc;
+    transition: .2s;
+}
+
+.size:hover,
+.size.active {
+    background: #111;
+    color: white;
+    border-color: #111;
+}
+
+/* =========================
+   ADD TO CART
+========================= */
+
+.buy-area {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.quantity {
+    width: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #d0d0cc;
+    background: transparent;
+}
+
+.quantity button {
+    width: 38px;
+    height: 100%;
+    border: 0;
+    background: transparent;
+    font-size: 18px;
+}
+
+.quantity span {
+    font-size: 14px;
+}
+
+.add-cart {
+    flex: 1;
+    border: 1px solid #111;
+    background: #111;
+    color: white;
+    font-weight: 600;
+    letter-spacing: .3px;
+    transition: .25s;
+}
+
+.add-cart:hover {
+    background: #333;
+}
+
+.buy-now {
+    width: 100%;
+    height: 54px;
+    border: 1px solid #111;
+    background: transparent;
+    font-weight: 600;
+    transition: .25s;
+}
+
+.buy-now:hover {
+    background: #111;
+    color: white;
+}
+
+/* =========================
+   TRUST
+========================= */
+
+.trust {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    border-top: 1px solid #ddd;
+    margin-top: 35px;
+    padding-top: 24px;
+    gap: 15px;
+}
+
+.trust-item {
+    font-size: 11px;
+    color: #666;
+}
+
+.trust-item strong {
+    display: block;
+    color: #111;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+/* =========================
+   DETAILS SECTION
+========================= */
+
+.details {
+    background: #111;
+    color: white;
+    padding: 110px 7%;
+}
+
+.details-inner {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.details-heading {
+    font-size: clamp(38px, 5vw, 68px);
+    letter-spacing: -3px;
+    max-width: 750px;
+    line-height: 1;
+    margin-bottom: 80px;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 50px;
+}
+
+.detail {
+    border-top: 1px solid #444;
+    padding-top: 22px;
+}
+
+.detail-number {
+    color: #888;
+    font-size: 12px;
+    margin-bottom: 30px;
+}
+
+.detail h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.detail p {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* =========================
+   PRODUCT STORY
+========================= */
+
+.story {
+    max-width: 1200px;
+    margin: auto;
+    padding: 120px 7%;
+}
+
+.story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+}
+
+.story h2 {
+    font-size: clamp(38px, 5vw, 62px);
+    letter-spacing: -3px;
+    line-height: 1;
+    margin-bottom: 25px;
+}
+
+.story p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.story-card {
+    background: #eaeae6;
+    min-height: 430px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.story-card img {
+    width: 80%;
+    mix-blend-mode: multiply;
+}
+
+/* =========================
+   FAQ
+========================= */
+
+.faq {
+    border-top: 1px solid #ddd;
+    max-width: 1000px;
+    margin: auto;
+    padding: 100px 7%;
+}
+
+.faq h2 {
+    font-size: 50px;
+    letter-spacing: -2px;
+    margin-bottom: 50px;
+}
+
+details {
+    border-top: 1px solid #ddd;
+    padding: 22px 0;
+}
+
+details:last-child {
+    border-bottom: 1px solid #ddd;
+}
+
+summary {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+details p {
+    color: #666;
+    padding-top: 15px;
+    font-size: 14px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #111;
+    color: white;
+    padding: 50px 7%;
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.footer-logo {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 4px;
+}
+
+.footer-text {
+    color: #888;
+    font-size: 13px;
+}
+
+/* =========================
+   CART POPUP
+========================= */
+
+.cart-message {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    background: #111;
+    color: white;
+    padding: 16px 22px;
+    font-size: 13px;
+    transform: translateY(120px);
+    opacity: 0;
+    transition: .35s;
+    z-index: 500;
+}
+
+.cart-message.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 30px 5%;
+        gap: 45px;
+    }
+
+    .product-image-container {
+        min-height: 450px;
+        order: 1;
+    }
+
+    .product-info {
+        order: 2;
+    }
+
+    .product-title {
+        font-size: 55px;
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .story-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .trust {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .navbar {
+        height: 65px;
+        padding: 0 5%;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .cart-button {
+        padding: 8px 13px;
+    }
+
+    .hero {
+        padding-top: 15px;
+    }
+
+    .product-image-container {
+        min-height: 360px;
+    }
+
+    .product-title {
+        font-size: 47px;
+        letter-spacing: -2.5px;
+    }
+
+    .buy-area {
+        flex-direction: column;
+    }
+
+    .quantity {
+        width: 100%;
+        height: 50px;
+    }
+
+    .add-cart {
+        height: 52px;
+    }
+
+    .details,
+    .story,
+    .faq {
+        padding-top: 75px;
+        padding-bottom: 75px;
+    }
+
+    .details-heading {
+        font-size: 42px;
+    }
+
+    .faq h2 {
+        font-size: 42px;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<header class="navbar">
+
+    <div class="logo">YASH</div>
+
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#product">Product</a></li>
+            <li><a href="#details">Details</a></li>
+            <li><a href="#story">Story</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <button class="cart-button" onclick="showCart()">
+        Cart <span id="cartCount">0</span>
+    </button>
+
+</header>
+
+
+<!-- =========================
+     PRODUCT
+========================= -->
+
+<main id="product">
+
+<section class="hero">
+
+    <div class="product-image-container">
+
+        <img
+            src="product.png"
+            alt="YASH pink graphic T-shirt"
+            class="product-image"
+        >
+
+    </div>
+
+
+    <div class="product-info">
+
+        <div class="eyebrow">
+            Essential Collection
+        </div>
+
+        <h1 class="product-title">
+            YASH<br>
+            T-Shirt
+        </h1>
+
+        <p class="product-description">
+            A clean everyday silhouette designed around
+            simplicity, comfort and effortless style.
+        </p>
+
+        <div class="price">
+            ₹999
+        </div>
+
+
+        <div class="selector-title">
+            Select Size
+        </div>
+
+        <div class="sizes">
+
+            <button class="size" onclick="selectSize(this)">
+                S
+            </button>
+
+            <button class="size" onclick="selectSize(this)">
+                M
+            </button>
+
+            <button class="size" onclick="selectSize(this)">
+                L
+            </button>
+
+            <button class="size" onclick="selectSize(this)">
+                XL
+            </button>
+
+        </div>
+
+
+        <div class="buy-area">
+
+            <div class="quantity">
+
+                <button onclick="changeQuantity(-1)">
+                    −
+                </button>
+
+                <span id="quantity">
+                    1
+                </span>
+
+                <button onclick="changeQuantity(1)">
+                    +
+                </button>
+
+            </div>
+
+            <button class="add-cart" onclick="addToCart()">
+                ADD TO CART
+            </button>
+
+        </div>
+
+
+        <button class="buy-now" onclick="buyNow()">
+            BUY NOW
+        </button>
+
+
+        <div class="trust">
+
+            <div class="trust-item">
+                <strong>QUALITY</strong>
+                Designed for everyday wear.
+            </div>
+
+            <div class="trust-item">
+                <strong>SHIPPING</strong>
+                Securely packed for delivery.
+            </div>
+
+            <div class="trust-item">
+                <strong>SUPPORT</strong>
+                Customer support available.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DETAILS
+========================= -->
+
+<section class="details" id="details">
+
+    <div class="details-inner">
+
+        <h2 class="details-heading">
+            Simple by design.
+            Made to be worn.
+        </h2>
+
+        <div class="details-grid">
+
+            <div class="detail">
+
+                <div class="detail-number">
+                    01
+                </div>
+
+                <h3>Everyday Comfort</h3>
+
+                <p>
+                    Designed around a relaxed everyday
+                    silhouette that works across different
+                    casual looks.
+                </p>
+
+            </div>
+
+
+            <div class="detail">
+
+                <div class="detail-number">
+                    02
+                </div>
+
+                <h3>Clean Identity</h3>
+
+                <p>
+                    A minimal base combined with a distinctive
+                    front graphic creates a recognizable look.
+                </p>
+
+            </div>
+
+
+            <div class="detail">
+
+                <div class="detail-number">
+                    03
+                </div>
+
+                <h3>Made for Repeat Wear</h3>
+
+                <p>
+                    An uncomplicated essential designed to
+                    become part of your regular wardrobe.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     STORY
+========================= -->
+
+<section class="story" id="story">
+
+    <div class="story-grid">
+
+        <div>
+
+            <div class="eyebrow">
+                The Product
+            </div>
+
+            <h2>
+                Less noise.
+                More identity.
+            </h2>
+
+            <p>
+                The YASH T-Shirt brings together a simple
+                silhouette and a bold graphic element.
+                The result is an everyday piece that doesn't
+                need excessive detailing to stand out.
+            </p>
+
+        </div>
+
+
+        <div class="story-card">
+
+            <img
+                src="product.png"
+                alt="YASH T-shirt"
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FAQ
+========================= -->
+
+<section class="faq" id="faq">
+
+    <h2>
+        Questions.
+    </h2>
+
+
+    <details>
+
+        <summary>
+            What sizes are available?
+        </summary>
+
+        <p>
+            The current collection is available in S, M,
+            L and XL.
+        </p>
+
+    </details>
+
+
+    <details>
+
+        <summary>
+            How should I choose my size?
+        </summary>
+
+        <p>
+            Choose your usual T-shirt size. A detailed
+            size chart can be added here later.
+        </p>
+
+    </details>
+
+
+    <details>
+
+        <summary>
+            How can I contact support?
+        </summary>
+
+        <p>
+            Add your customer support email or WhatsApp
+            contact here once your store is ready.
+        </p>
+
+    </details>
+
+
+    <details>
+
+        <summary>
+            Where do you ship?
+        </summary>
+
+        <p>
+            Shipping information can be added here when
+            your delivery system is finalized.
+        </p>
+
+    </details>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-inner">
+
+        <div class="footer-logo">
+            YASH
+        </div>
+
+        <div class="footer-text">
+            © 2026 YASH. All rights reserved.
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- CART MESSAGE -->
+
+<div class="cart-message" id="cartMessage">
+    Added to cart.
+</div>
+
+
+<script>
+
+let quantity = 1;
+let cartCount = 0;
+let selectedSize = null;
+
+
+function changeQuantity(amount) {
+
+    quantity += amount;
+
+    if (quantity < 1) {
+        quantity = 1;
+    }
+
+    document.getElementById("quantity").textContent = quantity;
+}
+
+
+function selectSize(button) {
+
+    document.querySelectorAll(".size").forEach(function(size) {
+        size.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    selectedSize = button.textContent;
+}
+
+
+function addToCart() {
+
+    if (!selectedSize) {
+
+        alert("Please select a size first.");
+
+        return;
+    }
+
+    cartCount += quantity;
+
+    document.getElementById("cartCount").textContent = cartCount;
+
+    showCart();
+
+}
+
+
+function showCart() {
+
+    const message = document.getElementById("cartMessage");
+
+    message.textContent =
+        cartCount > 0
+        ? "Your cart has " + cartCount + " item(s)."
+        : "Your cart is empty.";
+
+    message.classList.add("show");
+
+    setTimeout(function() {
+
+        message.classList.remove("show");
+
+    }, 2500);
+
+}
+
+
+function buyNow() {
+
+    if (!selectedSize) {
+
+        alert("Please select a size first.");
+
+        return;
+    }
+
+    alert(
+        "Checkout will be connected here. Selected size: "
+        + selectedSize
+        + " | Quantity: "
+        + quantity
+    );
+
+}
+
+</script>
+
+</body>
+</html>
