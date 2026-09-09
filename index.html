@@ -4,15 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>YASH — Essential T-Shirt</title>
-
-<meta name="description" content="YASH Essential T-Shirt — understated design, everyday comfort.">
+<title>YASH — Premium T-Shirt</title>
 
 <style>
-
-/* =========================
-   RESET
-========================= */
 
 * {
     margin: 0;
@@ -20,460 +14,390 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     background: #f7f7f5;
     color: #111;
-    line-height: 1.5;
 }
 
-button,
-select {
-    font: inherit;
-}
+/* NAVBAR */
 
-button {
-    cursor: pointer;
-}
-
-/* =========================
-   NAVIGATION
-========================= */
-
-.navbar {
-    height: 76px;
-    padding: 0 6%;
+nav {
+    height: 75px;
+    background: #111;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(247,247,245,0.94);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid #e5e5e2;
+    padding: 0 6%;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .logo {
-    font-size: 24px;
+    font-size: 25px;
     font-weight: 800;
-    letter-spacing: 5px;
+    letter-spacing: 3px;
 }
 
 .nav-links {
     display: flex;
-    gap: 34px;
-    list-style: none;
+    gap: 30px;
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: #111;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.nav-links a:hover {
-    opacity: .55;
-}
-
-.cart-button {
-    border: 1px solid #111;
-    background: transparent;
-    padding: 10px 17px;
-    border-radius: 30px;
-    font-size: 13px;
-    transition: .2s;
-}
-
-.cart-button:hover {
-    background: #111;
     color: white;
+    text-decoration: none;
+    font-size: 14px;
 }
 
-/* =========================
-   HERO
-========================= */
+.cart {
+    background: white;
+    color: #111;
+    padding: 10px 16px;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+/* HERO */
 
 .hero {
-    min-height: calc(100vh - 76px);
-    display: grid;
-    grid-template-columns: 1.15fr .85fr;
-    align-items: center;
-    max-width: 1500px;
+    max-width: 1250px;
     margin: auto;
-    padding: 70px 6%;
-    gap: 80px;
-}
-
-.product-image-container {
-    background: #eeeeeb;
-    min-height: 650px;
-    display: flex;
+    padding: 70px 5%;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 70px;
     align-items: center;
-    justify-content: center;
+}
+
+/* GALLERY */
+
+.gallery {
+    width: 100%;
+}
+
+.main-image {
+    background: white;
+    border-radius: 24px;
     overflow: hidden;
+    aspect-ratio: 1 / 1.15;
 }
 
-.product-image {
-    width: 88%;
-    max-width: 760px;
-    height: auto;
-    object-fit: contain;
-    mix-blend-mode: multiply;
-    transition: transform .5s ease;
+.main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: 0.3s ease;
 }
 
-.product-image-container:hover .product-image {
-    transform: scale(1.025);
+.thumbnails {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
 }
 
-/* =========================
-   PRODUCT INFORMATION
-========================= */
-
-.product-info {
-    max-width: 520px;
+.thumbnail {
+    width: 85px;
+    height: 85px;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    opacity: 0.6;
+    border: 2px solid transparent;
+    transition: 0.2s;
 }
 
-.eyebrow {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
+.thumbnail:hover {
+    opacity: 1;
+}
+
+.thumbnail.active {
+    opacity: 1;
+    border: 2px solid #111;
+}
+
+/* PRODUCT INFO */
+
+.product-info h1 {
+    font-size: 52px;
+    line-height: 1;
+    margin-bottom: 15px;
+}
+
+.subtitle {
     color: #777;
-    margin-bottom: 18px;
-}
-
-.product-title {
-    font-size: clamp(48px, 6vw, 78px);
-    line-height: .95;
-    letter-spacing: -4px;
-    margin-bottom: 25px;
-}
-
-.product-description {
-    color: #666;
     font-size: 16px;
-    max-width: 440px;
     margin-bottom: 30px;
 }
 
 .price {
-    font-size: 25px;
-    font-weight: 600;
-    margin-bottom: 32px;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 30px;
 }
 
-/* =========================
-   SIZE SELECTOR
-========================= */
+.product-description {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
 
-.selector-title {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+/* SIZE */
+
+.option-title {
+    font-size: 14px;
+    font-weight: bold;
     margin-bottom: 12px;
 }
 
 .sizes {
     display: flex;
-    gap: 9px;
-    margin-bottom: 28px;
+    gap: 10px;
+    margin-bottom: 12px;
 }
 
-.size {
-    width: 55px;
+.size-btn {
+    width: 58px;
     height: 48px;
-    background: transparent;
-    border: 1px solid #d0d0cc;
-    transition: .2s;
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
 }
 
-.size:hover,
-.size.active {
+.size-btn:hover {
+    border-color: #111;
+}
+
+.size-btn.selected {
     background: #111;
     color: white;
     border-color: #111;
 }
 
-/* =========================
-   ADD TO CART
-========================= */
+/* SIZE DETAILS */
 
-.buy-area {
-    display: flex;
-    gap: 10px;
+.size-details {
+    background: #eeeeeb;
+    border-radius: 12px;
+    padding: 15px;
     margin-bottom: 25px;
+    display: none;
 }
 
+.size-details.show {
+    display: block;
+}
+
+.size-details strong {
+    display: block;
+    margin-bottom: 7px;
+}
+
+.size-details p {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* QUANTITY */
+
 .quantity {
-    width: 125px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    border: 1px solid #d0d0cc;
-    background: transparent;
+    gap: 15px;
+    margin-bottom: 25px;
 }
 
 .quantity button {
     width: 38px;
-    height: 100%;
-    border: 0;
-    background: transparent;
-    font-size: 18px;
+    height: 38px;
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
 }
 
 .quantity span {
-    font-size: 14px;
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* BUTTONS */
+
+.buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.add-cart,
+.buy-now {
+    border: none;
+    padding: 17px 25px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.2s;
 }
 
 .add-cart {
-    flex: 1;
-    border: 1px solid #111;
     background: #111;
     color: white;
-    font-weight: 600;
-    letter-spacing: .3px;
-    transition: .25s;
-}
-
-.add-cart:hover {
-    background: #333;
+    flex: 1;
 }
 
 .buy-now {
-    width: 100%;
-    height: 54px;
-    border: 1px solid #111;
-    background: transparent;
-    font-weight: 600;
-    transition: .25s;
+    background: #ddd;
+    color: #111;
+    flex: 1;
 }
 
+.add-cart:hover,
 .buy-now:hover {
-    background: #111;
-    color: white;
+    transform: translateY(-2px);
 }
 
-/* =========================
-   TRUST
-========================= */
+/* TRUST */
 
 .trust {
+    max-width: 1100px;
+    margin: 20px auto 80px;
+    padding: 0 5%;
     display: grid;
-    grid-template-columns: repeat(3,1fr);
-    border-top: 1px solid #ddd;
-    margin-top: 35px;
-    padding-top: 24px;
-    gap: 15px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 
-.trust-item {
-    font-size: 11px;
-    color: #666;
+.trust-box {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
 }
 
-.trust-item strong {
-    display: block;
-    color: #111;
-    font-size: 12px;
-    margin-bottom: 4px;
+.trust-box h3 {
+    margin-bottom: 8px;
 }
 
-/* =========================
-   DETAILS SECTION
-========================= */
+.trust-box p {
+    color: #777;
+    font-size: 14px;
+}
+
+/* DETAILS */
 
 .details {
     background: #111;
     color: white;
-    padding: 110px 7%;
+    padding: 90px 8%;
 }
 
-.details-inner {
-    max-width: 1200px;
+.details-container {
+    max-width: 1100px;
     margin: auto;
 }
 
-.details-heading {
-    font-size: clamp(38px, 5vw, 68px);
-    letter-spacing: -3px;
-    max-width: 750px;
-    line-height: 1;
-    margin-bottom: 80px;
+.details h2 {
+    font-size: 42px;
+    margin-bottom: 35px;
 }
 
-.details-grid {
+.detail-grid {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 50px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
 }
 
-.detail {
-    border-top: 1px solid #444;
-    padding-top: 22px;
+.detail-card {
+    border: 1px solid #333;
+    border-radius: 15px;
+    padding: 30px;
 }
 
-.detail-number {
-    color: #888;
-    font-size: 12px;
-    margin-bottom: 30px;
-}
-
-.detail h3 {
-    font-size: 20px;
+.detail-card h3 {
     margin-bottom: 12px;
 }
 
-.detail p {
+.detail-card p {
     color: #aaa;
-    font-size: 14px;
-    line-height: 1.7;
+    line-height: 1.6;
 }
 
-/* =========================
-   PRODUCT STORY
-========================= */
+/* STORY */
 
 .story {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: auto;
-    padding: 120px 7%;
-}
-
-.story-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
-    align-items: center;
+    padding: 90px 6%;
+    text-align: center;
 }
 
 .story h2 {
-    font-size: clamp(38px, 5vw, 62px);
-    letter-spacing: -3px;
-    line-height: 1;
-    margin-bottom: 25px;
+    font-size: 42px;
+    margin-bottom: 20px;
 }
 
 .story p {
     color: #666;
-    font-size: 16px;
     line-height: 1.8;
+    font-size: 17px;
 }
 
-.story-card {
-    background: #eaeae6;
-    min-height: 430px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.story-card img {
-    width: 80%;
-    mix-blend-mode: multiply;
-}
-
-/* =========================
-   FAQ
-========================= */
-
-.faq {
-    border-top: 1px solid #ddd;
-    max-width: 1000px;
-    margin: auto;
-    padding: 100px 7%;
-}
-
-.faq h2 {
-    font-size: 50px;
-    letter-spacing: -2px;
-    margin-bottom: 50px;
-}
-
-details {
-    border-top: 1px solid #ddd;
-    padding: 22px 0;
-}
-
-details:last-child {
-    border-bottom: 1px solid #ddd;
-}
-
-summary {
-    cursor: pointer;
-    font-weight: 600;
-}
-
-details p {
-    color: #666;
-    padding-top: 15px;
-    font-size: 14px;
-}
-
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 
 footer {
     background: #111;
     color: white;
-    padding: 50px 7%;
+    text-align: center;
+    padding: 35px;
 }
 
-.footer-inner {
-    max-width: 1200px;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
-}
-
-.footer-logo {
-    font-size: 22px;
-    font-weight: 800;
-    letter-spacing: 4px;
-}
-
-.footer-text {
+footer p {
     color: #888;
-    font-size: 13px;
+    margin-top: 8px;
 }
 
-/* =========================
-   CART POPUP
-========================= */
+/* CART POPUP */
 
-.cart-message {
+.popup {
     position: fixed;
+    top: 90px;
     right: 25px;
-    bottom: 25px;
     background: #111;
     color: white;
-    padding: 16px 22px;
+    padding: 18px 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+    transform: translateX(150%);
+    transition: 0.4s ease;
+    z-index: 2000;
+}
+
+.popup.show {
+    transform: translateX(0);
+}
+
+.popup-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.popup-text {
+    color: #ccc;
     font-size: 13px;
-    transform: translateY(120px);
-    opacity: 0;
-    transition: .35s;
-    z-index: 500;
 }
 
-.cart-message.show {
-    transform: translateY(0);
-    opacity: 1;
-}
+/* MOBILE */
 
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 900px) {
+@media (max-width: 850px) {
 
     .nav-links {
         display: none;
@@ -481,353 +405,197 @@ footer {
 
     .hero {
         grid-template-columns: 1fr;
-        padding: 30px 5%;
-        gap: 45px;
+        gap: 40px;
+        padding-top: 35px;
     }
 
-    .product-image-container {
-        min-height: 450px;
-        order: 1;
-    }
-
-    .product-info {
-        order: 2;
-    }
-
-    .product-title {
-        font-size: 55px;
-    }
-
-    .details-grid {
-        grid-template-columns: 1fr;
-        gap: 45px;
-    }
-
-    .story-grid {
-        grid-template-columns: 1fr;
-        gap: 50px;
+    .product-info h1 {
+        font-size: 40px;
     }
 
     .trust {
         grid-template-columns: 1fr;
-        gap: 15px;
-    }
-}
-
-@media (max-width: 500px) {
-
-    .navbar {
-        height: 65px;
-        padding: 0 5%;
     }
 
-    .logo {
-        font-size: 19px;
+    .detail-grid {
+        grid-template-columns: 1fr;
     }
 
-    .cart-button {
-        padding: 8px 13px;
+    .details h2,
+    .story h2 {
+        font-size: 32px;
     }
 
-    .hero {
-        padding-top: 15px;
-    }
-
-    .product-image-container {
-        min-height: 360px;
-    }
-
-    .product-title {
-        font-size: 47px;
-        letter-spacing: -2.5px;
-    }
-
-    .buy-area {
+    .buttons {
         flex-direction: column;
     }
 
-    .quantity {
-        width: 100%;
-        height: 50px;
-    }
-
-    .add-cart {
-        height: 52px;
-    }
-
-    .details,
-    .story,
-    .faq {
-        padding-top: 75px;
-        padding-bottom: 75px;
-    }
-
-    .details-heading {
-        font-size: 42px;
-    }
-
-    .faq h2 {
-        font-size: 42px;
-    }
-
-    .footer-inner {
-        flex-direction: column;
-    }
 }
 
 </style>
 </head>
 
+
 <body>
 
-<!-- =========================
-     NAVBAR
-========================= -->
+<!-- NAVBAR -->
 
-<header class="navbar">
+<nav>
 
     <div class="logo">YASH</div>
 
-    <nav>
-        <ul class="nav-links">
-            <li><a href="#product">Product</a></li>
-            <li><a href="#details">Details</a></li>
-            <li><a href="#story">Story</a></li>
-            <li><a href="#faq">FAQ</a></li>
-        </ul>
-    </nav>
+    <div class="nav-links">
+        <a href="#product">Product</a>
+        <a href="#details">Details</a>
+        <a href="#story">Story</a>
+    </div>
 
-    <button class="cart-button" onclick="showCart()">
-        Cart <span id="cartCount">0</span>
-    </button>
+    <div class="cart">
+        🛒 Cart <span id="cartCount">0</span>
+    </div>
 
-</header>
+</nav>
 
 
-<!-- =========================
-     PRODUCT
-========================= -->
+<!-- PRODUCT -->
 
-<main id="product">
+<section class="hero" id="product">
 
-<section class="hero">
+    <!-- GALLERY -->
 
-    <div class="product-image-container">
+    <div class="gallery">
 
-        <img
-            src="product.png"
-            alt="YASH pink graphic T-shirt"
-            class="product-image"
-        >
+        <div class="main-image">
+            <img id="mainProductImage"
+                 src="product.png.jpeg"
+                 alt="YASH T-Shirt">
+        </div>
+
+        <div class="thumbnails">
+
+            <img class="thumbnail active"
+                 src="product.png.jpeg"
+                 onclick="changeImage('product.png.jpeg', this)">
+
+            <img class="thumbnail"
+                 src="product1.jpg"
+                 onclick="changeImage('product1.jpg', this)">
+
+            <img class="thumbnail"
+                 src="product2.jpg"
+                 onclick="changeImage('product2.jpg', this)">
+
+            <img class="thumbnail"
+                 src="product3.jpg"
+                 onclick="changeImage('product3.jpg', this)">
+
+        </div>
 
     </div>
 
 
+    <!-- PRODUCT INFORMATION -->
+
     <div class="product-info">
 
-        <div class="eyebrow">
-            Essential Collection
-        </div>
+        <h1>YASH T-Shirt</h1>
 
-        <h1 class="product-title">
-            YASH<br>
-            T-Shirt
-        </h1>
-
-        <p class="product-description">
-            A clean everyday silhouette designed around
-            simplicity, comfort and effortless style.
+        <p class="subtitle">
+            Premium everyday essentials.
         </p>
 
         <div class="price">
             ₹999
         </div>
 
+        <p class="product-description">
+            A clean and versatile T-shirt designed for everyday wear.
+            Minimal design, premium feel and an effortless look.
+        </p>
 
-        <div class="selector-title">
-            Select Size
+
+        <!-- SIZE -->
+
+        <div class="option-title">
+            SELECT SIZE
         </div>
 
         <div class="sizes">
 
-            <button class="size" onclick="selectSize(this)">
+            <button class="size-btn"
+                    onclick="selectSize('S', this)">
                 S
             </button>
 
-            <button class="size" onclick="selectSize(this)">
+            <button class="size-btn"
+                    onclick="selectSize('M', this)">
                 M
             </button>
 
-            <button class="size" onclick="selectSize(this)">
+            <button class="size-btn"
+                    onclick="selectSize('L', this)">
                 L
             </button>
 
-            <button class="size" onclick="selectSize(this)">
+            <button class="size-btn"
+                    onclick="selectSize('XL', this)">
                 XL
             </button>
 
         </div>
 
 
-        <div class="buy-area">
+        <!-- SIZE INFORMATION -->
 
-            <div class="quantity">
+        <div class="size-details" id="sizeDetails">
 
-                <button onclick="changeQuantity(-1)">
-                    −
-                </button>
+            <strong id="sizeTitle">
+                Select a size
+            </strong>
 
-                <span id="quantity">
-                    1
-                </span>
-
-                <button onclick="changeQuantity(1)">
-                    +
-                </button>
-
-            </div>
-
-            <button class="add-cart" onclick="addToCart()">
-                ADD TO CART
-            </button>
-
-        </div>
-
-
-        <button class="buy-now" onclick="buyNow()">
-            BUY NOW
-        </button>
-
-
-        <div class="trust">
-
-            <div class="trust-item">
-                <strong>QUALITY</strong>
-                Designed for everyday wear.
-            </div>
-
-            <div class="trust-item">
-                <strong>SHIPPING</strong>
-                Securely packed for delivery.
-            </div>
-
-            <div class="trust-item">
-                <strong>SUPPORT</strong>
-                Customer support available.
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     DETAILS
-========================= -->
-
-<section class="details" id="details">
-
-    <div class="details-inner">
-
-        <h2 class="details-heading">
-            Simple by design.
-            Made to be worn.
-        </h2>
-
-        <div class="details-grid">
-
-            <div class="detail">
-
-                <div class="detail-number">
-                    01
-                </div>
-
-                <h3>Everyday Comfort</h3>
-
-                <p>
-                    Designed around a relaxed everyday
-                    silhouette that works across different
-                    casual looks.
-                </p>
-
-            </div>
-
-
-            <div class="detail">
-
-                <div class="detail-number">
-                    02
-                </div>
-
-                <h3>Clean Identity</h3>
-
-                <p>
-                    A minimal base combined with a distinctive
-                    front graphic creates a recognizable look.
-                </p>
-
-            </div>
-
-
-            <div class="detail">
-
-                <div class="detail-number">
-                    03
-                </div>
-
-                <h3>Made for Repeat Wear</h3>
-
-                <p>
-                    An uncomplicated essential designed to
-                    become part of your regular wardrobe.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     STORY
-========================= -->
-
-<section class="story" id="story">
-
-    <div class="story-grid">
-
-        <div>
-
-            <div class="eyebrow">
-                The Product
-            </div>
-
-            <h2>
-                Less noise.
-                More identity.
-            </h2>
-
-            <p>
-                The YASH T-Shirt brings together a simple
-                silhouette and a bold graphic element.
-                The result is an everyday piece that doesn't
-                need excessive detailing to stand out.
+            <p id="sizeDescription">
+                Select your size to see the recommended measurements.
             </p>
 
         </div>
 
 
-        <div class="story-card">
+        <!-- QUANTITY -->
 
-            <img
-                src="product.png"
-                alt="YASH T-shirt"
-            >
+        <div class="option-title">
+            QUANTITY
+        </div>
+
+        <div class="quantity">
+
+            <button onclick="decreaseQuantity()">
+                −
+            </button>
+
+            <span id="quantity">
+                1
+            </span>
+
+            <button onclick="increaseQuantity()">
+                +
+            </button>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+
+        <div class="buttons">
+
+            <button class="add-cart"
+                    onclick="addToCart()">
+                ADD TO CART
+            </button>
+
+            <button class="buy-now"
+                    onclick="buyNow()">
+                BUY NOW
+            </button>
 
         </div>
 
@@ -836,188 +604,270 @@ footer {
 </section>
 
 
-<!-- =========================
-     FAQ
-========================= -->
+<!-- TRUST -->
 
-<section class="faq" id="faq">
+<section class="trust">
 
-    <h2>
-        Questions.
-    </h2>
+    <div class="trust-box">
+        <h3>Premium Quality</h3>
+        <p>Designed with comfort and everyday wear in mind.</p>
+    </div>
 
+    <div class="trust-box">
+        <h3>Easy Returns</h3>
+        <p>Simple and customer-friendly return experience.</p>
+    </div>
 
-    <details>
-
-        <summary>
-            What sizes are available?
-        </summary>
-
-        <p>
-            The current collection is available in S, M,
-            L and XL.
-        </p>
-
-    </details>
-
-
-    <details>
-
-        <summary>
-            How should I choose my size?
-        </summary>
-
-        <p>
-            Choose your usual T-shirt size. A detailed
-            size chart can be added here later.
-        </p>
-
-    </details>
-
-
-    <details>
-
-        <summary>
-            How can I contact support?
-        </summary>
-
-        <p>
-            Add your customer support email or WhatsApp
-            contact here once your store is ready.
-        </p>
-
-    </details>
-
-
-    <details>
-
-        <summary>
-            Where do you ship?
-        </summary>
-
-        <p>
-            Shipping information can be added here when
-            your delivery system is finalized.
-        </p>
-
-    </details>
+    <div class="trust-box">
+        <h3>Secure Shopping</h3>
+        <p>Your shopping experience is designed to be simple and safe.</p>
+    </div>
 
 </section>
 
-</main>
+
+<!-- DETAILS -->
+
+<section class="details" id="details">
+
+    <div class="details-container">
+
+        <h2>Built for everyday.</h2>
+
+        <div class="detail-grid">
+
+            <div class="detail-card">
+                <h3>Premium Feel</h3>
+                <p>
+                    A comfortable everyday construction designed
+                    for a clean premium appearance.
+                </p>
+            </div>
+
+            <div class="detail-card">
+                <h3>Minimal Design</h3>
+                <p>
+                    Simple styling that works with different
+                    outfits and occasions.
+                </p>
+            </div>
+
+            <div class="detail-card">
+                <h3>Easy Fit</h3>
+                <p>
+                    Designed to provide a relaxed and comfortable
+                    everyday silhouette.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- STORY -->
+
+<section class="story" id="story">
+
+    <h2>The YASH Story</h2>
+
+    <p>
+        YASH is built around a simple idea:
+        everyday clothing should feel effortless,
+        look clean and still have its own identity.
+    </p>
+
+</section>
+
+
+<!-- FOOTER -->
 
 <footer>
 
-    <div class="footer-inner">
+    <strong>YASH</strong>
 
-        <div class="footer-logo">
-            YASH
-        </div>
-
-        <div class="footer-text">
-            © 2026 YASH. All rights reserved.
-        </div>
-
-    </div>
+    <p>
+        Premium everyday essentials.
+    </p>
 
 </footer>
 
 
-<!-- CART MESSAGE -->
+<!-- CART POPUP -->
 
-<div class="cart-message" id="cartMessage">
-    Added to cart.
+<div class="popup" id="cartPopup">
+
+    <div class="popup-title">
+        ✓ Added to cart
+    </div>
+
+    <div class="popup-text">
+        Your YASH T-Shirt has been added successfully.
+    </div>
+
 </div>
 
 
 <script>
 
-let quantity = 1;
-let cartCount = 0;
-let selectedSize = null;
+/* IMAGE GALLERY */
 
+function changeImage(image, thumbnail) {
 
-function changeQuantity(amount) {
+    document.getElementById("mainProductImage").src = image;
 
-    quantity += amount;
-
-    if (quantity < 1) {
-        quantity = 1;
-    }
-
-    document.getElementById("quantity").textContent = quantity;
-}
-
-
-function selectSize(button) {
-
-    document.querySelectorAll(".size").forEach(function(size) {
-        size.classList.remove("active");
+    document.querySelectorAll(".thumbnail").forEach(function(img) {
+        img.classList.remove("active");
     });
 
-    button.classList.add("active");
-
-    selectedSize = button.textContent;
+    thumbnail.classList.add("active");
 }
 
+
+/* SIZE SELECTION */
+
+let selectedSize = "";
+
+function selectSize(size, button) {
+
+    selectedSize = size;
+
+    document.querySelectorAll(".size-btn").forEach(function(btn) {
+        btn.classList.remove("selected");
+    });
+
+    button.classList.add("selected");
+
+    const sizeDetails = document.getElementById("sizeDetails");
+    const sizeTitle = document.getElementById("sizeTitle");
+    const sizeDescription = document.getElementById("sizeDescription");
+
+    sizeDetails.classList.add("show");
+
+    if (size === "S") {
+
+        sizeTitle.innerText = "Size S";
+
+        sizeDescription.innerText =
+            "Recommended for a smaller fit. Approx. chest: 36–38 inches.";
+
+    }
+
+    else if (size === "M") {
+
+        sizeTitle.innerText = "Size M";
+
+        sizeDescription.innerText =
+            "Recommended for a regular fit. Approx. chest: 38–40 inches.";
+
+    }
+
+    else if (size === "L") {
+
+        sizeTitle.innerText = "Size L";
+
+        sizeDescription.innerText =
+            "Recommended for a relaxed fit. Approx. chest: 40–42 inches.";
+
+    }
+
+    else if (size === "XL") {
+
+        sizeTitle.innerText = "Size XL";
+
+        sizeDescription.innerText =
+            "Recommended for a roomier fit. Approx. chest: 42–44 inches.";
+
+    }
+
+}
+
+
+/* QUANTITY */
+
+let quantity = 1;
+
+function increaseQuantity() {
+
+    quantity++;
+
+    document.getElementById("quantity").innerText = quantity;
+
+}
+
+function decreaseQuantity() {
+
+    if (quantity > 1) {
+
+        quantity--;
+
+        document.getElementById("quantity").innerText = quantity;
+
+    }
+
+}
+
+
+/* ADD TO CART */
+
+let cartCount = 0;
 
 function addToCart() {
 
-    if (!selectedSize) {
+    if (selectedSize === "") {
 
         alert("Please select a size first.");
 
         return;
+
     }
 
     cartCount += quantity;
 
-    document.getElementById("cartCount").textContent = cartCount;
+    document.getElementById("cartCount").innerText = cartCount;
 
-    showCart();
+    showCartPopup();
 
 }
 
 
-function showCart() {
+/* CART POPUP */
 
-    const message = document.getElementById("cartMessage");
+function showCartPopup() {
 
-    message.textContent =
-        cartCount > 0
-        ? "Your cart has " + cartCount + " item(s)."
-        : "Your cart is empty.";
+    const popup = document.getElementById("cartPopup");
 
-    message.classList.add("show");
+    popup.classList.add("show");
 
     setTimeout(function() {
 
-        message.classList.remove("show");
+        popup.classList.remove("show");
 
-    }, 2500);
+    }, 3000);
 
 }
 
 
+/* BUY NOW */
+
 function buyNow() {
 
-    if (!selectedSize) {
+    if (selectedSize === "") {
 
         alert("Please select a size first.");
 
         return;
+
     }
 
     alert(
-        "Checkout will be connected here. Selected size: "
-        + selectedSize
-        + " | Quantity: "
-        + quantity
+        "Selected Size: " +
+        selectedSize +
+        "\nQuantity: " +
+        quantity +
+        "\n\nCheckout system will be connected next."
     );
 
 }
