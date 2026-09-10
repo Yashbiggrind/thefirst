@@ -111,7 +111,7 @@ button{font:inherit}
     z-index:2;
 }
 .gallery-wrap{position:sticky;top:100px}
-.main-gallery{
+.main-gallery{transform:translateY(var(--scroll-shift,0px));
     position:relative;aspect-ratio:1/1.12;background:#111;border:1px solid #222;
     border-radius:28px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.45);
 }
@@ -124,7 +124,7 @@ button{font:inherit}
     background:rgba(0,0,0,.55);color:#fff;cursor:pointer;z-index:3;
     backdrop-filter:blur(8px);transition:.3s;
 }
-.gallery-arrow:hover{background:#fff;color:#000;transform:translateY(-50%) scale(1.08)}
+.gallery-arrow:hover{background:#fff;color:#000;transform:translateY(-50%) scale(1.08);box-shadow:0 0 30px rgba(255,255,255,.18)}
 .prev{left:16px}.next{right:16px}
 .zoom-label{
     position:absolute;right:16px;top:16px;background:rgba(0,0,0,.55);
@@ -373,6 +373,158 @@ footer strong{color:#fff;letter-spacing:3px}
 .cart-note{font-size:9px;color:#555;text-align:center;margin-top:9px}
 @media(max-width:650px){.cart-drawer{width:100%}}
 
+
+/* ==========================================================
+   MUSEUM-STYLE PRODUCT SHOWCASE
+========================================================== */
+.gallery-wrap{
+    position:sticky;
+    top:100px;
+    perspective:1400px;
+}
+.main-gallery{
+    isolation:isolate;
+    background:
+        radial-gradient(circle at 50% 12%,rgba(255,255,255,.16),transparent 28%),
+        linear-gradient(145deg,#101010,#050505 58%,#121212);
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:
+        0 45px 100px rgba(0,0,0,.52),
+        inset 0 1px 0 rgba(255,255,255,.12);
+    overflow:hidden;
+    transform-style:preserve-3d;
+    transition:transform .8s cubic-bezier(.2,.8,.2,1),box-shadow .8s ease;
+}
+.main-gallery::before{
+    content:"";
+    position:absolute;
+    z-index:1;
+    pointer-events:none;
+    width:45%;
+    height:145%;
+    left:28%;
+    top:-30%;
+    background:linear-gradient(105deg,transparent 0%,rgba(255,255,255,.025) 35%,rgba(255,255,255,.18) 50%,rgba(255,255,255,.025) 65%,transparent 100%);
+    filter:blur(16px);
+    transform:rotate(8deg);
+    animation:museumBeam 6s ease-in-out infinite;
+}
+.main-gallery::after{
+    content:"";
+    position:absolute;
+    z-index:0;
+    left:14%;
+    right:14%;
+    bottom:7%;
+    height:20%;
+    background:radial-gradient(ellipse,rgba(255,255,255,.22),transparent 68%);
+    filter:blur(18px);
+    opacity:.65;
+    pointer-events:none;
+}
+.main-gallery img{
+    position:relative;
+    z-index:2;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .8s cubic-bezier(.2,.8,.2,1),opacity .35s ease,filter .5s ease;
+    will-change:transform;
+}
+.main-gallery.showcase-float img{
+    animation:museumFloat 4.5s ease-in-out infinite;
+}
+.main-gallery:hover{
+    transform:translateY(-6px) rotateX(1deg) rotateY(-1deg);
+    box-shadow:0 55px 120px rgba(0,0,0,.62),0 0 55px rgba(255,255,255,.055);
+}
+.museum-label{
+    position:absolute;
+    z-index:5;
+    top:18px;
+    left:18px;
+    padding:9px 12px;
+    border:1px solid rgba(255,255,255,.13);
+    border-radius:999px;
+    background:rgba(0,0,0,.42);
+    backdrop-filter:blur(12px);
+    color:#d8d8d8;
+    font-size:8px;
+    font-weight:900;
+    letter-spacing:2.5px;
+    pointer-events:none;
+}
+.showcase-status{
+    position:absolute;
+    z-index:5;
+    left:18px;
+    bottom:18px;
+    padding:8px 11px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.11);
+    background:rgba(0,0,0,.38);
+    backdrop-filter:blur(10px);
+    color:#999;
+    font-size:8px;
+    letter-spacing:1.5px;
+    pointer-events:none;
+}
+.showcase-status span{
+    display:inline-block;
+    width:5px;height:5px;border-radius:50%;
+    background:#fff;
+    margin-right:6px;
+    box-shadow:0 0 10px #fff;
+    animation:statusPulse 1.5s infinite;
+}
+.thumbs{
+    padding:5px 3px 8px;
+    scroll-behavior:smooth;
+}
+.thumb{
+    position:relative;
+    filter:saturate(.72);
+    transition:transform .4s cubic-bezier(.2,.8,.2,1),filter .4s ease,opacity .4s ease,border-color .4s ease;
+}
+.thumb:hover,.thumb.active{
+    filter:saturate(1.15);
+    transform:translateY(-5px) scale(1.035);
+    box-shadow:0 10px 25px rgba(0,0,0,.18);
+}
+.museum-progress{
+    position:absolute;
+    z-index:6;
+    left:0;right:0;bottom:0;
+    height:2px;
+    background:rgba(255,255,255,.08);
+    pointer-events:none;
+}
+.museum-progress i{
+    display:block;height:100%;width:0;
+    background:#fff;
+    box-shadow:0 0 10px rgba(255,255,255,.8);
+}
+@keyframes museumBeam{
+    0%,100%{transform:translateX(-20%) rotate(8deg);opacity:.25}
+    50%{transform:translateX(20%) rotate(8deg);opacity:.7}
+}
+@keyframes museumFloat{
+    0%,100%{transform:translate3d(0,0,0) scale(1.015)}
+    50%{transform:translate3d(0,-7px,0) scale(1.025)}
+}
+@keyframes statusPulse{
+    0%,100%{opacity:.35;transform:scale(.8)}
+    50%{opacity:1;transform:scale(1.15)}
+}
+@media(max-width:900px){
+    .gallery-wrap{position:relative;top:auto}
+    .main-gallery:hover{transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+    .main-gallery::before,.main-gallery.showcase-float img,.showcase-status span{animation:none!important}
+}
+
 @media(max-width:900px){
     .hero{grid-template-columns:1fr;gap:38px;padding-top:35px}
     .gallery-wrap{position:relative;top:auto}
@@ -392,6 +544,14 @@ footer strong{color:#fff;letter-spacing:3px}
     .section{padding:60px 4%}
     .popup{right:15px;bottom:15px}
 }
+
+.collection-rail{
+    display:flex;align-items:center;gap:9px;margin:4px 3px 0;
+    font-size:7px;letter-spacing:2px;color:#777;font-weight:900;
+}
+.collection-rail i{height:1px;flex:1;background:#d7d7d7}
+.collection-rail b{color:#333;font-weight:900}
+
 </style>
 </head>
 
@@ -440,7 +600,9 @@ footer strong{color:#fff;letter-spacing:3px}
 
     <div class="gallery-wrap reveal">
 
-        <div class="main-gallery" id="mainGallery">
+        <div class="main-gallery showcase-float" id="mainGallery">
+            <div class="museum-label">YASH / OBJECT 01</div>
+            <div class="showcase-status"><span></span>CURATED VIEW</div>
             <img id="mainProductImage" src="product.png" alt="T-shirts" draggable="false">
 
             <button class="gallery-arrow prev" onclick="previousImage()" aria-label="Previous image">←</button>
@@ -449,9 +611,17 @@ footer strong{color:#fff;letter-spacing:3px}
             <button class="zoom-label" onclick="toggleZoom()">CLICK TO ZOOM</button>
 
             <div class="dots" id="dots"></div>
+            <div class="museum-progress"><i id="museumProgress"></i></div>
         </div>
 
         <div class="thumbs" id="thumbs"></div>
+
+<div class="collection-rail">
+    <span>THE COLLECTION</span>
+    <i></i>
+    <b>01 / PREMIUM ESSENTIAL</b>
+</div>
+
 
     </div>
 
@@ -1228,6 +1398,111 @@ function showToast(message){
         requestAnimationFrame(animate);
     }
     animate();
+
+})();
+
+
+/* ==========================================================
+   AUTOMATIC MUSEUM SHOWCASE + PREMIUM MOTION
+========================================================== */
+(function(){
+
+    const gallery = document.getElementById("mainGallery");
+    const progress = document.getElementById("museumProgress");
+    if(!gallery || !window.PRODUCT && typeof PRODUCT === "undefined") return;
+
+    let showcaseTimer = null;
+    let progressStart = 0;
+    const SHOWCASE_TIME = 4200;
+    let showcasePaused = false;
+
+    function startShowcase(){
+        clearInterval(showcaseTimer);
+        progressStart = performance.now();
+        showcaseTimer = setInterval(function(){
+            if(showcasePaused) return;
+            if(typeof PRODUCT === "undefined" || !PRODUCT.images || PRODUCT.images.length < 2) return;
+            nextImage();
+            progressStart = performance.now();
+        }, SHOWCASE_TIME);
+    }
+
+    function animateProgress(now){
+        if(progress && !showcasePaused){
+            const elapsed = now - progressStart;
+            const pct = Math.min(100,(elapsed / SHOWCASE_TIME) * 100);
+            progress.style.width = pct + "%";
+        }
+        requestAnimationFrame(animateProgress);
+    }
+
+    gallery.addEventListener("mouseenter",function(){
+        showcasePaused = true;
+    });
+
+    gallery.addEventListener("mouseleave",function(){
+        showcasePaused = false;
+        progressStart = performance.now();
+    });
+
+    // Stop auto-advance briefly after a manual gallery interaction.
+    gallery.addEventListener("click",function(e){
+        if(e.target.closest(".gallery-arrow,.thumb,.dot,.zoom-label")){
+            progressStart = performance.now();
+        }
+    });
+
+    startShowcase();
+    requestAnimationFrame(animateProgress);
+
+    // Subtle 3D tilt that follows the pointer without becoming distracting.
+    gallery.addEventListener("mousemove",function(e){
+        if(!window.matchMedia("(pointer:fine)").matches) return;
+
+        const r = gallery.getBoundingClientRect();
+        const x = (e.clientX-r.left)/r.width-.5;
+        const y = (e.clientY-r.top)/r.height-.5;
+
+        gallery.style.transform =
+            "translateY(-4px) rotateX("+(-y*2.2)+"deg) rotateY("+(x*2.2)+"deg)";
+    });
+
+    gallery.addEventListener("mouseleave",function(){
+        gallery.style.transform = "";
+    });
+
+})();
+
+
+/* ==========================================================
+   SCROLL PARALLAX / EDITORIAL MOTION
+========================================================== */
+(function(){
+
+    const gallery = document.getElementById("mainGallery");
+    if(!gallery) return;
+
+    let ticking = false;
+
+    window.addEventListener("scroll",function(){
+
+        if(ticking) return;
+        ticking = true;
+
+        requestAnimationFrame(function(){
+
+            const r = gallery.getBoundingClientRect();
+            const viewport = window.innerHeight;
+
+            if(r.bottom > 0 && r.top < viewport){
+                const progress = (viewport-r.top)/(viewport+r.height);
+                const y = Math.max(-18,Math.min(18,(progress-.5)*18));
+                gallery.style.setProperty("--scroll-shift",y+"px");
+            }
+
+            ticking = false;
+        });
+    },{passive:true});
 
 })();
 
