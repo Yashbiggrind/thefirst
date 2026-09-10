@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Orders | YASH</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #080808;
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Background glow */
+body::before {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%);
+    top: -200px;
+    left: -150px;
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,255,255,0.06), transparent 70%);
+    bottom: -200px;
+    right: -150px;
+    pointer-events: none;
+}
+
+/* NAVBAR */
+
+.navbar {
+    height: 75px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 900;
+    letter-spacing: 4px;
+}
+
+.back {
+    color: white;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.back:hover {
+    background: white;
+    color: black;
+    transform: translateY(-2px);
+}
+
+/* HEADER */
+
+.header {
+    text-align: center;
+    padding: 70px 20px 40px;
+    animation: fadeDown 0.8s ease;
+}
+
+.header h1 {
+    font-size: clamp(35px, 6vw, 65px);
+    margin-bottom: 12px;
+    letter-spacing: -2px;
+}
+
+.header p {
+    color: #999;
+    font-size: 16px;
+}
+
+/* STATS */
+
+.stats {
+    width: 86%;
+    max-width: 1100px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.stat {
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,0.08),
+        rgba(255,255,255,0.025)
+    );
+
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 22px;
+
+    padding: 25px;
+
+    position: relative;
+    overflow: hidden;
+
+    transition: 0.4s;
+
+    animation: fadeUp 0.8s ease;
+}
+
+.stat:hover {
+    transform: translateY(-7px);
+    border-color: rgba(255,255,255,0.3);
+}
+
+.stat h3 {
+    font-size: 32px;
+    margin-bottom: 6px;
+}
+
+.stat p {
+    color: #888;
+    font-size: 14px;
+}
+
+/* ORDERS */
+
+.orders-container {
+    width: 86%;
+    max-width: 1100px;
+    margin: 50px auto;
+}
+
+.section-title {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+/* ORDER CARD */
+
+.order {
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 24px;
+
+    margin-bottom: 22px;
+    overflow: hidden;
+
+    animation: fadeUp 0.7s ease;
+
+    transition: 0.4s;
+}
+
+.order:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255,255,255,0.22);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.35);
+}
+
+.order-top {
+    padding: 22px 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.order-id {
+    font-weight: bold;
+}
+
+.order-date {
+    color: #777;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.status {
+    padding: 8px 15px;
+    border-radius: 30px;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    background: rgba(255,255,255,0.08);
+}
+
+/* PRODUCT */
+
+.product {
+    padding: 25px;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.product img {
+    width: 100px;
+    height: 110px;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+
+    background: #151515;
+}
+
+.product-info {
+    flex: 1;
+}
+
+.product-info h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.product-info p {
+    color: #888;
+    font-size: 14px;
+    margin: 4px 0;
+}
+
+.price {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+/* TRACKING */
+
+.tracking {
+    padding: 5px 25px 30px;
+}
+
+.tracking-title {
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 18px;
+}
+
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 9px;
+    left: 5%;
+    right: 5%;
+    height: 2px;
+    background: #333;
+    z-index: 0;
+}
+
+.step {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    width: 25%;
+}
+
+.dot {
+    width: 19px;
+    height: 19px;
+
+    margin: auto;
+
+    background: #333;
+    border-radius: 50%;
+
+    border: 4px solid #080808;
+
+    transition: 0.5s;
+}
+
+.step.active .dot {
+    background: white;
+    box-shadow: 0 0 18px rgba(255,255,255,0.7);
+}
+
+.step p {
+    color: #666;
+    font-size: 11px;
+    margin-top: 10px;
+}
+
+.step.active p {
+    color: white;
+}
+
+/* EMPTY */
+
+.empty {
+    text-align: center;
+    padding: 80px 20px;
+
+    background: rgba(255,255,255,0.03);
+    border-radius: 25px;
+    border: 1px solid rgba(255,255,255,0.08);
+
+    animation: fadeUp 0.8s ease;
+}
+
+.empty-icon {
+    font-size: 55px;
+    margin-bottom: 20px;
+}
+
+.empty h2 {
+    margin-bottom: 10px;
+}
+
+.empty p {
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.shop-btn {
+    display: inline-block;
+    background: white;
+    color: black;
+
+    padding: 13px 25px;
+
+    border-radius: 30px;
+
+    text-decoration: none;
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.shop-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(255,255,255,0.15);
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    color: #555;
+    padding: 40px 20px;
+    font-size: 13px;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:700px) {
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .product {
+        align-items: flex-start;
+    }
+
+    .product img {
+        width: 80px;
+        height: 90px;
+    }
+
+    .order-top {
+        gap: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .timeline p {
+        font-size: 9px;
+    }
+
+    .navbar {
+        padding: 0 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">YASH</div>
+
+    <a href="index.html" class="back">
+        ← Continue Shopping
+    </a>
+
+</nav>
+
+<header class="header">
+
+    <h1>My Orders</h1>
+
+    <p>Track and manage your YASH orders</p>
+
+</header>
+
+<section class="stats">
+
+    <div class="stat">
+        <h3 id="totalOrders">0</h3>
+        <p>Total Orders</p>
+    </div>
+
+    <div class="stat">
+        <h3 id="totalItems">0</h3>
+        <p>Total Items</p>
+    </div>
+
+    <div class="stat">
+        ₹<span id="totalSpent">0</span>
+        <p>Total Spent</p>
+    </div>
+
+</section>
+
+<section class="orders-container">
+
+    <h2 class="section-title">Order History</h2>
+
+    <div id="ordersList"></div>
+
+</section>
+
+<footer>
+    © 2026 YASH — All Rights Reserved
+</footer>
+
+<script>
+
+function loadOrders() {
+
+    const orders =
+        JSON.parse(localStorage.getItem("yashOrders")) || [];
+
+    const list = document.getElementById("ordersList");
+
+    document.getElementById("totalOrders").innerText =
+        orders.length;
+
+    let items = 0;
+    let spent = 0;
+
+    orders.forEach(order => {
+
+        items += Number(order.quantity || 1);
+        spent += Number(order.total || 0);
+
+    });
+
+    document.getElementById("totalItems").innerText = items;
+
+    document.getElementById("totalSpent").innerText =
+        spent.toLocaleString("en-IN");
+
+    if (orders.length === 0) {
+
+        list.innerHTML = `
+            <div class="empty">
+
+                <div class="empty-icon">🛍️</div>
+
+                <h2>No orders yet</h2>
+
+                <p>
+                    Your orders will appear here after you place one.
+                </p>
+
+                <a href="index.html" class="shop-btn">
+                    Start Shopping
+                </a>
+
+            </div>
+        `;
+
+        return;
+
+    }
+
+    list.innerHTML = "";
+
+    orders.slice().reverse().forEach(order => {
+
+        const status = order.status || "Order Placed";
+
+        let active = 1;
+
+        if (status === "Processing") active = 2;
+        if (status === "Shipped") active = 3;
+        if (status === "Delivered") active = 4;
+
+        const date = new Date(order.date);
+
+        list.innerHTML += `
+
+        <div class="order">
+
+            <div class="order-top">
+
+                <div>
+
+                    <div class="order-id">
+                        Order #${order.id}
+                    </div>
+
+                    <div class="order-date">
+                        ${date.toLocaleDateString("en-IN", {
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric"
+                        })}
+                    </div>
+
+                </div>
+
+                <div class="status">
+                    ${status}
+                </div>
+
+            </div>
+
+            <div class="product">
+
+                <img
+                    src="${order.image || "product.png"}"
+                    alt="YASH T-Shirt"
+                >
+
+                <div class="product-info">
+
+                    <h2>${order.product || "YASH T-Shirt"}</h2>
+
+                    <p>Size: ${order.size || "M"}</p>
+
+                    <p>Quantity: ${order.quantity || 1}</p>
+
+                    <div class="price">
+                        ₹${Number(order.total || 0).toLocaleString("en-IN")}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="tracking">
+
+                <div class="tracking-title">
+                    Order Tracking
+                </div>
+
+                <div class="timeline">
+
+                    <div class="step ${active >= 1 ? "active" : ""}">
+                        <div class="dot"></div>
+                        <p>Placed</p>
+                    </div>
+
+                    <div class="step ${active >= 2 ? "active" : ""}">
+                        <div class="dot"></div>
+                        <p>Processing</p>
+                    </div>
+
+                    <div class="step ${active >= 3 ? "active" : ""}">
+                        <div class="dot"></div>
+                        <p>Shipped</p>
+                    </div>
+
+                    <div class="step ${active >= 4 ? "active" : ""}">
+                        <div class="dot"></div>
+                        <p>Delivered</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+loadOrders();
+
+</script>
+
+</body>
+</html>
