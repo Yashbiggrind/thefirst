@@ -431,7 +431,258 @@ footer p {
     }
 
 }
+/* =========================================
+   PREMIUM TECH PRODUCT SPECS
+========================================= */
 
+.tech-specs,
+.size-guide {
+    margin-top: 55px;
+    padding: 30px 0;
+}
+
+.spec-header {
+    margin-bottom: 25px;
+}
+
+.spec-label {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #888;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.spec-header h2 {
+    font-size: 30px;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+}
+
+.spec-header p {
+    color: #777;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* SPEC GRID */
+
+.spec-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.spec-card {
+    position: relative;
+
+    min-height: 125px;
+
+    padding: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.075),
+            rgba(255,255,255,0.025)
+        );
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.spec-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    right: -60px;
+    top: -60px;
+
+    background: rgba(255,255,255,0.05);
+
+    border-radius: 50%;
+
+    transition: 0.5s;
+}
+
+.spec-card:hover {
+    transform: translateY(-6px);
+
+    border-color: rgba(255,255,255,0.3);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,0.4);
+}
+
+.spec-card:hover::before {
+    transform: scale(2);
+}
+
+.spec-icon {
+    display: block;
+
+    font-size: 18px;
+
+    margin-bottom: 15px;
+
+    color: white;
+}
+
+.spec-card small {
+    display: block;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    color: #666;
+
+    margin-bottom: 7px;
+}
+
+.spec-card strong {
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #eee;
+}
+
+
+/* =========================================
+   SIZE TABLE
+========================================= */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    background: rgba(255,255,255,0.025);
+}
+
+.size-guide table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 600px;
+}
+
+.size-guide th,
+.size-guide td {
+    padding: 18px 20px;
+
+    text-align: center;
+
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+
+    font-size: 13px;
+}
+
+.size-guide th {
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: #777;
+
+    background: rgba(255,255,255,0.035);
+}
+
+.size-guide td {
+    color: #ccc;
+}
+
+.size-guide td:first-child {
+    color: white;
+
+    font-weight: bold;
+}
+
+.size-guide tr {
+    transition: 0.3s;
+}
+
+.size-guide tbody tr:hover {
+    background: rgba(255,255,255,0.045);
+}
+
+.measurement-note {
+    margin-top: 12px;
+
+    padding: 15px 18px;
+
+    border-left: 2px solid rgba(255,255,255,0.4);
+
+    background: rgba(255,255,255,0.025);
+
+    display: flex;
+
+    gap: 15px;
+
+    font-size: 11px;
+
+    color: #666;
+}
+
+.measurement-note strong {
+    color: #aaa;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .spec-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .spec-card {
+        min-height: 115px;
+        padding: 17px;
+    }
+
+    .spec-header h2 {
+        font-size: 25px;
+    }
+
+    .measurement-note {
+        flex-direction: column;
+        gap: 6px;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .spec-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
 </style>
 </head>
 
