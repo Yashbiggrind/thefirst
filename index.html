@@ -290,6 +290,89 @@ footer strong{color:#fff;letter-spacing:3px}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 .reveal{animation:fadeUp .7s ease both}
 
+
+/* ==========================================================
+   PREMIUM CURSOR EXPERIENCE
+========================================================== */
+@media (pointer:fine){
+    html,body,a,button,[role="button"]{cursor:none}
+    #luxCursor{
+        position:fixed;left:0;top:0;width:16px;height:16px;border:1px solid rgba(0,0,0,.75);
+        border-radius:50%;pointer-events:none;z-index:99999;mix-blend-mode:difference;
+        transform:translate3d(-50%,-50%,0);transition:width .25s ease,height .25s ease,
+        background .25s ease;will-change:transform
+    }
+    #luxCursor.active{width:38px;height:38px;background:rgba(255,255,255,.16);border-color:#fff}
+    .cursor-trail{
+        position:fixed;left:0;top:0;width:7px;height:7px;border-radius:50%;
+        pointer-events:none;z-index:99998;background:rgba(255,255,255,.82);
+        box-shadow:0 0 18px rgba(255,255,255,.75);transform:translate3d(-50%,-50%,0);
+        animation:cursorParticle .8s cubic-bezier(.2,.8,.2,1) forwards
+    }
+    .cursor-footprint{
+        position:fixed;left:0;top:0;width:10px;height:10px;pointer-events:none;
+        z-index:99997;transform:translate3d(-50%,-50%,0) rotate(45deg);
+        border:1px solid rgba(255,255,255,.75);box-shadow:0 0 15px rgba(255,255,255,.5);
+        animation:cursorFootprint 1.15s ease-out forwards
+    }
+    @keyframes cursorParticle{
+        0%{opacity:.9;transform:translate3d(-50%,-50%,0) scale(1)}
+        100%{opacity:0;transform:translate3d(-50%,-50%,0) scale(.1) translateY(-16px)}
+    }
+    @keyframes cursorFootprint{
+        0%{opacity:.8;transform:translate3d(-50%,-50%,0) rotate(45deg) scale(.5)}
+        100%{opacity:0;transform:translate3d(-50%,-50%,0) rotate(135deg) scale(1.8) translateY(-8px)}
+    }
+}
+.cart-overlay{
+    position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(5px);
+    z-index:7000;opacity:0;visibility:hidden;transition:.3s
+}
+.cart-overlay.show{opacity:1;visibility:visible}
+.cart-drawer{
+    position:fixed;right:0;top:0;width:min(440px,100%);height:100dvh;background:#0b0b0b;
+    border-left:1px solid #292929;z-index:7001;transform:translateX(105%);
+    transition:transform .45s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;
+    box-shadow:-30px 0 90px rgba(0,0,0,.55)
+}
+.cart-drawer.show{transform:none}
+.cart-head{
+    padding:25px 22px;border-bottom:1px solid #222;display:flex;align-items:center;
+    justify-content:space-between;gap:15px
+}
+.cart-head small{font-size:9px;letter-spacing:3px;color:#666;font-weight:900}
+.cart-head h2{font-size:25px;margin-top:3px}
+.cart-close{
+    width:38px;height:38px;border-radius:50%;border:1px solid #333;background:#111;color:#fff;
+    cursor:pointer;transition:.25s
+}
+.cart-close:hover{background:#fff;color:#000}
+.cart-items{flex:1;overflow:auto;padding:18px}
+.cart-item{
+    display:grid;grid-template-columns:76px 1fr auto;gap:13px;align-items:center;
+    padding:13px 0;border-bottom:1px solid #1f1f1f
+}
+.cart-item img{width:76px;height:86px;object-fit:cover;border-radius:12px;background:#151515}
+.cart-item h3{font-size:13px}.cart-item p{font-size:10px;color:#777;margin-top:4px}
+.cart-item strong{display:block;font-size:12px;margin-top:7px}
+.cart-remove{
+    width:31px;height:31px;border:1px solid #333;background:#111;color:#aaa;border-radius:8px;
+    cursor:pointer;transition:.25s
+}
+.cart-remove:hover{background:#fff;color:#000}
+.cart-empty{text-align:center;color:#666;font-size:12px;padding:70px 20px}
+.cart-foot{padding:18px 20px;border-top:1px solid #222;background:#0d0d0d}
+.cart-total{display:flex;justify-content:space-between;font-size:13px;margin-bottom:13px}
+.cart-total strong{font-size:19px;color:#fff}
+.cart-buy{
+    width:100%;min-height:52px;border:0;border-radius:13px;background:#fff;color:#000;
+    font-weight:900;cursor:pointer;transition:.3s
+}
+.cart-buy:hover{transform:translateY(-2px);box-shadow:0 15px 35px rgba(255,255,255,.12)}
+.cart-buy:disabled{opacity:.35;cursor:not-allowed;transform:none}
+.cart-note{font-size:9px;color:#555;text-align:center;margin-top:9px}
+@media(max-width:650px){.cart-drawer{width:100%}}
+
 @media(max-width:900px){
     .hero{grid-template-columns:1fr;gap:38px;padding-top:35px}
     .gallery-wrap{position:relative;top:auto}
@@ -326,7 +409,7 @@ footer strong{color:#fff;letter-spacing:3px}
         <button class="nav-btn" onclick="window.location.href='orders.html'">
             ORDERS <span class="cart-count" id="navOrderCount">0</span>
         </button>
-        <button class="nav-btn" onclick="scrollToCart()">🛒 <span id="cartCount">0</span></button>
+        <button class="nav-btn" onclick="openCart()" aria-label="Open shopping cart">🛒 <span id="cartCount">0</span></button>
     </div>
 </nav>
 
@@ -614,6 +697,21 @@ footer strong{color:#fff;letter-spacing:3px}
     </div>
 </div>
 
+
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+    <div class="cart-head">
+        <div><small>YASH / SHOPPING BAG</small><h2>Your Cart</h2></div>
+        <button class="cart-close" onclick="closeCart()" aria-label="Close cart">×</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-foot">
+        <div class="cart-total"><span>Subtotal</span><strong id="cartTotal">₹0.00</strong></div>
+        <button class="cart-buy" id="cartBuyButton" onclick="buyCart()">BUY & PLACE ORDER →</button>
+        <div class="cart-note">Your order will continue to orders.html</div>
+    </div>
+</aside>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -649,7 +747,7 @@ const PRODUCT = {
 let selectedSize = "";
 let quantity = 1;
 let currentImage = 0;
-let cartCount = Number(localStorage.getItem("yashCartCount") || 0);
+let cartItems = JSON.parse(localStorage.getItem("yashCartItems") || "[]");
 let popupTimer;
 const DISCOUNT_CODE = "BASSTA";
 const DISCOUNT_RATE = 0.50;
@@ -662,6 +760,7 @@ let discountApplied = localStorage.getItem("yashDiscountCode") === DISCOUNT_CODE
 document.addEventListener("DOMContentLoaded", function(){
     renderGallery();
     updateCartUI();
+    renderCart();
     updatePriceUI();
 });
 
@@ -850,29 +949,140 @@ function addToCart(){
         return;
     }
 
-    cartCount += quantity;
+    const unitPrice = getCurrentUnitPrice();
+    const key = PRODUCT.name + "|" + selectedSize;
+    const existing = cartItems.find(function(item){ return item.key === key; });
 
-    localStorage.setItem("yashCartCount",cartCount);
+    if(existing){
+        existing.quantity += quantity;
+        existing.total = existing.unitPrice * existing.quantity;
+    }else{
+        cartItems.push({
+            key:key,
+            product:PRODUCT.name,
+            image:PRODUCT.images[currentImage],
+            size:selectedSize,
+            quantity:quantity,
+            unitPrice:unitPrice,
+            total:unitPrice * quantity,
+            originalUnitPrice:PRODUCT.price,
+            discountPercent:discountApplied ? 50 : 0
+        });
+    }
 
+    saveCart();
     updateCartUI();
-
+    renderCart();
     showCartPopup();
+}
+
+function saveCart(){
+    localStorage.setItem("yashCartItems", JSON.stringify(cartItems));
+    localStorage.setItem("yashCartCount", String(
+        cartItems.reduce(function(sum,item){ return sum + item.quantity; },0)
+    ));
 }
 
 function updateCartUI(){
 
-    document.getElementById("cartCount").innerText = cartCount;
+    const count = cartItems.reduce(function(sum,item){ return sum + item.quantity; },0);
+    document.getElementById("cartCount").innerText = count;
 
-    const orders =
-        JSON.parse(localStorage.getItem("yashOrders")) || [];
-
-    document.getElementById("navOrderCount").innerText =
-        orders.length;
+    const orders = JSON.parse(localStorage.getItem("yashOrders")) || [];
+    document.getElementById("navOrderCount").innerText = orders.length;
 }
 
-/* ==========================================================
-   CART POPUP
-========================================================== */
+function openCart(){
+    renderCart();
+    document.getElementById("cartOverlay").classList.add("show");
+    document.getElementById("cartDrawer").classList.add("show");
+    document.body.style.overflow = "hidden";
+}
+
+function closeCart(){
+    document.getElementById("cartOverlay").classList.remove("show");
+    document.getElementById("cartDrawer").classList.remove("show");
+    document.body.style.overflow = "";
+}
+
+function removeFromCart(index){
+    cartItems.splice(index,1);
+    saveCart();
+    updateCartUI();
+    renderCart();
+    showToast("Item removed from cart.");
+}
+
+function renderCart(){
+
+    const box = document.getElementById("cartItems");
+    const totalBox = document.getElementById("cartTotal");
+    const buyButton = document.getElementById("cartBuyButton");
+    if(!box || !totalBox || !buyButton) return;
+
+    if(cartItems.length === 0){
+        box.innerHTML = '<div class="cart-empty">Your shopping bag is empty.<br><br>Add a product to get started.</div>';
+        totalBox.innerText = "₹0.00";
+        buyButton.disabled = true;
+        return;
+    }
+
+    let total = 0;
+
+    box.innerHTML = cartItems.map(function(item,index){
+        total += Number(item.total) || 0;
+        return `
+            <div class="cart-item">
+                <img src="${item.image}" alt="${item.product}">
+                <div>
+                    <h3>${item.product}</h3>
+                    <p>Size ${item.size} · Qty ${item.quantity}</p>
+                    <strong>₹${Number(item.total).toFixed(2)}</strong>
+                </div>
+                <button class="cart-remove" onclick="removeFromCart(${index})" aria-label="Remove item">×</button>
+            </div>
+        `;
+    }).join("");
+
+    totalBox.innerText = "₹" + total.toFixed(2);
+    buyButton.disabled = false;
+}
+
+function buyCart(){
+
+    if(cartItems.length === 0){
+        showToast("Your cart is empty.");
+        return;
+    }
+
+    const orders = JSON.parse(localStorage.getItem("yashOrders")) || [];
+
+    cartItems.forEach(function(item){
+        orders.push({
+            id:"YSH-" + Date.now() + "-" + Math.random().toString(36).slice(2,7).toUpperCase(),
+            product:item.product,
+            image:item.image,
+            size:item.size,
+            quantity:item.quantity,
+            total:item.total,
+            originalTotal:item.originalUnitPrice * item.quantity,
+            discountAmount:item.discountPercent
+                ? item.originalUnitPrice * item.quantity * (item.discountPercent / 100) : 0,
+            discountCode:item.discountPercent ? DISCOUNT_CODE : "",
+            discountPercent:item.discountPercent || 0,
+            status:"Order Placed",
+            date:new Date().toISOString()
+        });
+    });
+
+    localStorage.setItem("yashOrders", JSON.stringify(orders));
+    cartItems = [];
+    saveCart();
+    updateCartUI();
+    renderCart();
+    closeCart();
+    window.location.href = "orders.html";
+}
 
 function showCartPopup(){
 
@@ -907,50 +1117,26 @@ function buyNow(){
         return;
     }
 
-    createOrder();
+    const unitPrice = getCurrentUnitPrice();
+    const orders = JSON.parse(localStorage.getItem("yashOrders")) || [];
 
+    orders.push({
+        id:"YSH-" + Date.now(),
+        product:PRODUCT.name,
+        image:PRODUCT.images[currentImage],
+        size:selectedSize,
+        quantity:quantity,
+        total:unitPrice * quantity,
+        originalTotal:PRODUCT.price * quantity,
+        discountAmount:discountApplied ? PRODUCT.price * quantity * DISCOUNT_RATE : 0,
+        discountCode:discountApplied ? DISCOUNT_CODE : "",
+        discountPercent:discountApplied ? 50 : 0,
+        status:"Order Placed",
+        date:new Date().toISOString()
+    });
+
+    localStorage.setItem("yashOrders", JSON.stringify(orders));
     window.location.href = "orders.html";
-}
-
-function createOrder(){
-
-    const orders =
-        JSON.parse(localStorage.getItem("yashOrders")) || [];
-
-    const newOrder = {
-
-        id: "YSH-" + Date.now(),
-
-        product: PRODUCT.name,
-
-        image: PRODUCT.images[currentImage],
-
-        size: selectedSize,
-
-        quantity: quantity,
-
-        total: getCurrentUnitPrice() * quantity,
-
-        originalTotal: PRODUCT.price * quantity,
-        discountAmount: discountApplied ? PRODUCT.price * quantity * DISCOUNT_RATE : 0,
-        discountCode: discountApplied ? DISCOUNT_CODE : "",
-        discountPercent: discountApplied ? 50 : 0,
-
-        status: "Order Placed",
-
-        date: new Date().toISOString()
-    };
-
-    orders.push(newOrder);
-
-    localStorage.setItem(
-        "yashOrders",
-        JSON.stringify(orders)
-    );
-
-    /* Reset cart counter after Buy Now */
-    cartCount = 0;
-    localStorage.setItem("yashCartCount","0");
 }
 
 /* ==========================================================
@@ -982,6 +1168,69 @@ function showToast(message){
         toast.classList.remove("show");
     },2500);
 }
+
+/* ==========================================================
+   PREMIUM CURSOR + TRAIL + FOOTPRINTS
+========================================================== */
+(function(){
+
+    if(!window.matchMedia("(pointer:fine)").matches) return;
+
+    const cursor = document.createElement("div");
+    cursor.id = "luxCursor";
+    document.body.appendChild(cursor);
+
+    let mouseX = innerWidth/2, mouseY = innerHeight/2;
+    let currentX = mouseX, currentY = mouseY;
+    let lastTrail = 0, lastFootprint = 0;
+
+    document.addEventListener("mousemove", function(e){
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        const now = performance.now();
+
+        if(now-lastTrail > 28){
+            const p = document.createElement("span");
+            p.className = "cursor-trail";
+            p.style.left = mouseX+"px";
+            p.style.top = mouseY+"px";
+            document.body.appendChild(p);
+            setTimeout(function(){p.remove()},850);
+            lastTrail = now;
+        }
+
+        if(now-lastFootprint > 105){
+            const f = document.createElement("span");
+            f.className = "cursor-footprint";
+            f.style.left = mouseX+"px";
+            f.style.top = mouseY+"px";
+            document.body.appendChild(f);
+            setTimeout(function(){f.remove()},1200);
+            lastFootprint = now;
+        }
+    });
+
+    document.addEventListener("mouseover",function(e){
+        if(e.target.closest("a,button,.action,.spec,.feature,.thumb,.nav-btn"))
+            cursor.classList.add("active");
+    });
+
+    document.addEventListener("mouseout",function(e){
+        if(e.target.closest("a,button,.action,.spec,.feature,.thumb,.nav-btn"))
+            cursor.classList.remove("active");
+    });
+
+    function animate(){
+        currentX += (mouseX-currentX)*.22;
+        currentY += (mouseY-currentY)*.22;
+        cursor.style.transform =
+            "translate3d("+currentX+"px,"+currentY+"px,0) translate(-50%,-50%)";
+        requestAnimationFrame(animate);
+    }
+    animate();
+
+})();
+
 </script>
 
 </body>
