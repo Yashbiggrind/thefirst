@@ -10,36 +10,9 @@
 html{scroll-behavior:smooth}
 body{
     font-family:Inter,Arial,Helvetica,sans-serif;
-    background:transparent;
-    color:#f5f5f5;
-    line-height:1.5;
+    background:#070707;color:#f5f5f5;line-height:1.5;
     overflow-x:hidden;
 }
-    #bgVideo{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100vw;
-    height:100vh;
-    object-fit:cover;
-    z-index:0;
-    pointer-events:none;
-}
-body:before{
-    content:"";position:fixed;inset:-30%;
-    background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.07),transparent 25%),
-               radial-gradient(circle at 80% 70%,rgba(255,255,255,.045),transparent 25%);
-    pointer-events:none;z-index:1;
-}
-    .nav,
-main,
-footer,
-.popup,
-.toast{
-    position:relative;
-    z-index:2;
-}
-    
 a{text-decoration:none;color:inherit}
 button{font:inherit}
 .nav{
@@ -49,6 +22,49 @@ button{font:inherit}
     backdrop-filter:blur(18px);border-bottom:1px solid #202020;
 }
 .logo{font-size:25px;font-weight:900;letter-spacing:4px}
+.discount-banner{
+    position:relative;
+    z-index:900;
+    width:100%;
+    height:34px;
+    padding:0;
+    border:0;
+    border-bottom:1px solid #d8d8d8;
+    background:#fff;
+    color:#000;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+}
+.discount-track{
+    display:flex;
+    width:max-content;
+    flex-shrink:0;
+    animation:discountSlide 18s linear infinite;
+}
+.discount-group{
+    display:flex;
+    flex-shrink:0;
+}
+.discount-group span{
+    flex:0 0 auto;
+    padding:0 70px 0 0;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:1.7px;
+}
+.discount-group strong{
+    background:#000;
+    color:#fff;
+    padding:3px 7px;
+    border-radius:4px;
+}
+@keyframes discountSlide{
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
+}
 .navlinks{display:flex;gap:28px;color:#aaa;font-size:13px}
 .navlinks a:hover{color:#fff}
 .nav-right{display:flex;gap:10px;align-items:center}
@@ -61,12 +77,42 @@ button{font:inherit}
     background:#fff;color:#000;border-radius:50%;font-size:11px;margin-left:5px;font-weight:800}
 
 .hero{
-    max-width:1280px;margin:auto;padding:65px 5% 80px;
-    display:grid;grid-template-columns:1.08fr .92fr;gap:70px;align-items:start;
+    position:relative;
+    max-width:none;
+    margin:auto;
+    padding:65px 5% 80px;
+    display:grid;
+    grid-template-columns:1.08fr .92fr;
+    gap:70px;
+    align-items:start;
+    overflow:hidden;
+    isolation:isolate;
+}
+#bgVideo{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:0;
+    pointer-events:none;
+}
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(255,255,255,.16);
+    z-index:1;
+    pointer-events:none;
+}
+.hero > .gallery-wrap,
+.hero > .product-info{
+    position:relative;
+    z-index:2;
 }
 .gallery-wrap{position:sticky;top:100px}
 .main-gallery{
-    position:relative;aspect-ratio:1/1.12;background:rgba(17,17,17,.55);border:1px solid #222;
+    position:relative;aspect-ratio:1/1.12;background:#111;border:1px solid #222;
     border-radius:28px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.45);
 }
 .main-gallery img{width:100%;height:100%;object-fit:cover;display:block;
@@ -95,43 +141,72 @@ button{font:inherit}
 }
 .thumb:hover,.thumb.active{opacity:1;border-color:#fff;transform:translateY(-2px)}
 
-.product-info{padding-top:8px}
+.product-info{padding-top:8px;color:#080808}
+.hero .eyebrow{color:#333}
+.hero .product-info h1{color:#050505}
+.hero .subtitle{color:#202020}
+.hero .price{color:#000}
+.hero .description{color:#202020}
+.hero .option-title{color:#303030}
 .eyebrow{font-size:10px;letter-spacing:3px;color:#777;font-weight:800;margin-bottom:13px}
 .product-info h1{font-size:clamp(40px,5vw,64px);line-height:.95;letter-spacing:-3px;margin-bottom:14px}
 .subtitle{color:#8b8b8b;font-size:15px;margin-bottom:25px}
-.price{font-size:29px;font-weight:800;margin-bottom:26px}
+.price{font-size:29px;font-weight:800;margin-bottom:10px}
+.coupon-status{
+    display:inline-block;
+    margin:0 0 25px;
+    padding:8px 11px;
+    border:1px solid rgba(0,0,0,.18);
+    border-radius:999px;
+    background:rgba(255,255,255,.45);
+    color:#222;
+    font-size:10px;
+    font-weight:800;
+}
+.coupon-status.applied{
+    background:#000;
+    color:#fff;
+    border-color:#000;
+}
+.original-price{
+    margin-left:8px;
+    font-size:13px;
+    color:#555;
+    text-decoration:line-through;
+    font-weight:700;
+}
 .description{color:#aaa;font-size:14px;line-height:1.8;margin-bottom:30px;max-width:560px}
 
 .option-title{font-size:10px;letter-spacing:2px;color:#777;font-weight:800;margin:23px 0 11px}
 .sizes{display:flex;gap:9px;flex-wrap:wrap}
 .size-btn{
-    width:58px;height:47px;border:1px solid #333;background:#0e0e0e;color:#fff;
+    width:58px;height:47px;border:1px solid #222;background:rgba(255,255,255,.58);color:#080808;
     border-radius:10px;cursor:pointer;font-weight:800;transition:.25s;
 }
-.size-btn:hover{border-color:#888}
-.size-btn.selected{background:#fff;color:#000;border-color:#fff;box-shadow:0 0 24px rgba(255,255,255,.12)}
+.size-btn:hover{border-color:#000}
+.size-btn.selected{background:#000;color:#fff;border-color:#000;box-shadow:0 0 24px rgba(0,0,0,.18)}
 
 .selected-size{
-    margin-top:12px;padding:13px 15px;background:#0e0e0e;border:1px solid #222;border-radius:12px;
-    color:#aaa;font-size:12px;display:none;animation:slideIn .35s ease;
+    margin-top:12px;padding:13px 15px;background:rgba(255,255,255,.48);border:1px solid rgba(0,0,0,.2);border-radius:12px;
+    color:#202020;font-size:12px;display:none;animation:slideIn .35s ease;
 }
 .selected-size.show{display:block}
-.selected-size strong{color:#fff}
+.selected-size strong{color:#000}
 
 .qty{display:flex;align-items:center;gap:14px}
 .qty button{
-    width:40px;height:40px;border-radius:10px;border:1px solid #333;background:#101010;color:#fff;
+    width:40px;height:40px;border-radius:10px;border:1px solid #222;background:rgba(255,255,255,.58);color:#000;
     cursor:pointer;font-size:20px;transition:.25s;
 }
-.qty button:hover{background:#fff;color:#000}
-.qty span{min-width:25px;text-align:center;font-weight:800}
+.qty button:hover{background:#000;color:#fff}
+.qty span{min-width:25px;text-align:center;font-weight:800;color:#000}
 
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px}
 .action{
     min-height:54px;border-radius:13px;border:1px solid #333;cursor:pointer;font-weight:900;
     letter-spacing:.5px;transition:.3s;
 }
-.add{background:#fff;color:#000}.buy{background:#151515;color:#fff}
+.add{background:#000;color:#fff;border-color:#000}.buy{background:rgba(255,255,255,.65);color:#000;border-color:#222}
 .action:hover{transform:translateY(-3px);box-shadow:0 15px 35px rgba(0,0,0,.35)}
 .action:active{transform:scale(.98)}
 
@@ -140,12 +215,7 @@ button{font:inherit}
 .quick b{display:block;font-size:11px}.quick span{font-size:9px;color:#666}
 
 .section{max-width:1120px;margin:auto;padding:80px 5%}
-.section.dark{.section.dark{
-    max-width:none;
-    background:rgba(11,11,11,.65);
-    border-top:1px solid #171717;
-    border-bottom:1px solid #171717;
-}
+.section.dark{max-width:none;background:#0b0b0b;border-top:1px solid #171717;border-bottom:1px solid #171717}
 .section-inner{max-width:1120px;margin:auto}
 .section-head{margin-bottom:28px}
 .section-tag{font-size:9px;letter-spacing:3px;color:#666;font-weight:900}
@@ -228,6 +298,9 @@ footer strong{color:#fff;letter-spacing:3px}
 @media(max-width:650px){
     .nav{height:64px;padding:0 4%}.navlinks{display:none}
     .logo{font-size:21px}.nav-btn{padding:8px 11px}
+    .discount-banner{height:32px}
+    .discount-group span{font-size:9px;padding-right:55px}
+    .discount-track{animation-duration:14s}
     .hero{padding:25px 4% 55px}
     .product-info h1{letter-spacing:-2px}
     .actions,.care{grid-template-columns:1fr}
@@ -240,9 +313,7 @@ footer strong{color:#fff;letter-spacing:3px}
 </head>
 
 <body>
-<video id="bgVideo" autoplay muted loop playsinline>
-    <source src="background.mp4" type="video/mp4">
-</video>
+
 <nav class="nav">
     <div class="logo">YASH</div>
     <div class="navlinks">
@@ -259,14 +330,35 @@ footer strong{color:#fff;letter-spacing:3px}
     </div>
 </nav>
 
+<button class="discount-banner" type="button" onclick="applyDiscountCode()" title="Click to apply code Bassta" aria-label="Apply code Bassta for 50 percent discount">
+    <div class="discount-track">
+        <div class="discount-group">
+            <span>Use code <strong>Bassta</strong> for 50% discount</span>
+            <span>Use code <strong>Bassta</strong> for 50% discount</span>
+            <span>Use code <strong>Bassta</strong> for 50% discount</span>
+            <span>Use code <strong>Bassta</strong> for 50% discount</span>
+        </div>
+        <div class="discount-group" aria-hidden="true">
+            <span>Use code <strong>Bassta</strong> for 50% discount</span>
+            <span>Use code <strong>Bassta</strong> for 50% discount</span>
+            <span>Use code <strong>Bassta</strong> for 50% discount</span>
+            <span>Use code <strong>Bassta</strong> for 50% discount</span>
+        </div>
+    </div>
+</button>
+
 <main>
 
 <section class="hero" id="product">
 
+    <video id="bgVideo" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+        <source src="background.mp4" type="video/mp4">
+    </video>
+
     <div class="gallery-wrap reveal">
 
         <div class="main-gallery" id="mainGallery">
-            <img id="mainProductImage" src="product.png" alt="product.png" draggable="false">
+            <img id="mainProductImage" src="product.png" alt="T-shirts" draggable="false">
 
             <button class="gallery-arrow prev" onclick="previousImage()" aria-label="Previous image">←</button>
             <button class="gallery-arrow next" onclick="nextImage()" aria-label="Next image">→</button>
@@ -284,12 +376,12 @@ footer strong{color:#fff;letter-spacing:3px}
 
         <div class="eyebrow">YASH / ESSENTIAL SERIES</div>
 
-        <!-- PRODUCT NAME = IMAGE FILE NAME -->
-        <h1>product.png</h1>
+        <h1>T-shirts</h1>
 
         <p class="subtitle">Premium everyday essential · Engineered for comfort</p>
 
-        <div class="price">₹999</div>
+        <div class="price" id="priceDisplay">₹999</div>
+        <div class="coupon-status" id="couponStatus">Use code <strong>Bassta</strong> for 50% off</div>
 
         <p class="description">
             A clean, versatile everyday piece with a premium-focused construction.
@@ -514,7 +606,7 @@ footer strong{color:#fff;letter-spacing:3px}
     <div>
         <small>CART UPDATED</small>
         <h3 id="popupTitle">Added to your bag</h3>
-        <p id="popupText">product.png · Size M · Qty 1</p>
+        <p id="popupText">T-shirts · Size M · Qty 1</p>
     </div>
     <div class="popup-actions">
         <button onclick="closePopup()">CONTINUE SHOPPING</button>
@@ -531,7 +623,7 @@ footer strong{color:#fff;letter-spacing:3px}
 ========================================================== */
 
 const PRODUCT = {
-    name: "product.png",
+    name: "T-shirts",
     price: 999,
 
     images: [
@@ -559,6 +651,9 @@ let quantity = 1;
 let currentImage = 0;
 let cartCount = Number(localStorage.getItem("yashCartCount") || 0);
 let popupTimer;
+const DISCOUNT_CODE = "BASSTA";
+const DISCOUNT_RATE = 0.50;
+let discountApplied = localStorage.getItem("yashDiscountCode") === DISCOUNT_CODE;
 
 /* ==========================================================
    INITIALIZE
@@ -567,6 +662,7 @@ let popupTimer;
 document.addEventListener("DOMContentLoaded", function(){
     renderGallery();
     updateCartUI();
+    updatePriceUI();
 });
 
 /* ==========================================================
@@ -706,6 +802,44 @@ function updateQuantityUI(){
 }
 
 /* ==========================================================
+   DISCOUNT
+========================================================== */
+
+function getCurrentUnitPrice(){
+    return discountApplied
+        ? PRODUCT.price * (1 - DISCOUNT_RATE)
+        : PRODUCT.price;
+}
+
+function updatePriceUI(){
+
+    const priceDisplay = document.getElementById("priceDisplay");
+    const couponStatus = document.getElementById("couponStatus");
+
+    if(!priceDisplay || !couponStatus) return;
+
+    if(discountApplied){
+        priceDisplay.innerHTML =
+            "₹" + getCurrentUnitPrice().toFixed(2) +
+            ' <span class="original-price">₹' + PRODUCT.price + '</span>';
+
+        couponStatus.innerHTML = "✓ Bassta applied · 50% discount";
+        couponStatus.classList.add("applied");
+    }else{
+        priceDisplay.innerText = "₹" + PRODUCT.price;
+        couponStatus.innerHTML = 'Use code <strong>Bassta</strong> for 50% off';
+        couponStatus.classList.remove("applied");
+    }
+}
+
+function applyDiscountCode(){
+    discountApplied = true;
+    localStorage.setItem("yashDiscountCode", DISCOUNT_CODE);
+    updatePriceUI();
+    showToast("50% discount applied with code Bassta.");
+}
+
+/* ==========================================================
    CART
 ========================================================== */
 
@@ -795,7 +929,12 @@ function createOrder(){
 
         quantity: quantity,
 
-        total: PRODUCT.price * quantity,
+        total: getCurrentUnitPrice() * quantity,
+
+        originalTotal: PRODUCT.price * quantity,
+        discountAmount: discountApplied ? PRODUCT.price * quantity * DISCOUNT_RATE : 0,
+        discountCode: discountApplied ? DISCOUNT_CODE : "",
+        discountPercent: discountApplied ? 50 : 0,
 
         status: "Order Placed",
 
@@ -847,6 +986,3 @@ function showToast(message){
 
 </body>
 </html>
-
-
-
