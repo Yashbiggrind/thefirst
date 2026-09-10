@@ -831,7 +831,39 @@ function addToCart() {
     showCartPopup();
 
 }
+function saveOrder() {
 
+    const orders =
+        JSON.parse(localStorage.getItem("yashOrders")) || [];
+
+    const newOrder = {
+
+        id: "YSH-" + Date.now(),
+
+        product: "YASH T-Shirt",
+
+        image: "product.png",
+
+        size: selectedSize || "M",
+
+        quantity: quantity || 1,
+
+        total: 999 * (quantity || 1),
+
+        status: "Order Placed",
+
+        date: new Date().toISOString()
+
+    };
+
+    orders.push(newOrder);
+
+    localStorage.setItem(
+        "yashOrders",
+        JSON.stringify(orders)
+    );
+
+}
 
 /* CART POPUP */
 
