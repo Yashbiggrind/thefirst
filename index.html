@@ -3,1086 +3,754 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>YASH — Premium T-Shirt</title>
+<title>YASH — Premium Product</title>
 
 <style>
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f7f7f5;
-    color: #111;
-}
-
-/* NAVBAR */
-
-nav {
-    height: 75px;
-    background: #111;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 6%;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.logo {
-    font-size: 25px;
-    font-weight: 800;
-    letter-spacing: 3px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 30px;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.cart {
-    background: white;
-    color: #111;
-    padding: 10px 16px;
-    border-radius: 30px;
-    font-weight: bold;
-}
-
-/* HERO */
-
-.hero {
-    max-width: 1250px;
-    margin: auto;
-    padding: 70px 5%;
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 70px;
-    align-items: center;
-}
-
-/* GALLERY */
-
-.gallery {
-    width: 100%;
-}
-
-.main-image {
-    background: white;
-    border-radius: 24px;
-    overflow: hidden;
-    aspect-ratio: 1 / 1.15;
-}
-
-.main-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: 0.3s ease;
-}
-
-.thumbnails {
-    display: flex;
-    gap: 12px;
-    margin-top: 15px;
-}
-
-.thumbnail {
-    width: 85px;
-    height: 85px;
-    object-fit: cover;
-    border-radius: 12px;
-    cursor: pointer;
-    opacity: 0.6;
-    border: 2px solid transparent;
-    transition: 0.2s;
-}
-
-.thumbnail:hover {
-    opacity: 1;
-}
-
-.thumbnail.active {
-    opacity: 1;
-    border: 2px solid #111;
-}
-
-/* PRODUCT INFO */
-
-.product-info h1 {
-    font-size: 52px;
-    line-height: 1;
-    margin-bottom: 15px;
-}
-
-.subtitle {
-    color: #777;
-    font-size: 16px;
-    margin-bottom: 30px;
-}
-
-.price {
-    font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 30px;
-}
-
-.product-description {
-    color: #555;
-    line-height: 1.7;
-    margin-bottom: 30px;
-}
-
-/* SIZE */
-
-.option-title {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 12px;
-}
-
-.sizes {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 12px;
-}
-
-.size-btn {
-    width: 58px;
-    height: 48px;
-    border: 1px solid #ccc;
-    background: white;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.2s;
-}
-
-.size-btn:hover {
-    border-color: #111;
-}
-
-.size-btn.selected {
-    background: #111;
-    color: white;
-    border-color: #111;
-}
-
-/* SIZE DETAILS */
-
-.size-details {
-    background: #eeeeeb;
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 25px;
-    display: none;
-}
-
-.size-details.show {
-    display: block;
-}
-
-.size-details strong {
-    display: block;
-    margin-bottom: 7px;
-}
-
-.size-details p {
-    color: #555;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-/* QUANTITY */
-
-.quantity {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 25px;
-}
-
-.quantity button {
-    width: 38px;
-    height: 38px;
-    border: 1px solid #ccc;
-    background: white;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 20px;
-}
-
-.quantity span {
-    font-weight: bold;
-    min-width: 20px;
-    text-align: center;
-}
-
-/* BUTTONS */
-
-.buttons {
-    display: flex;
-    gap: 12px;
-}
-
-.add-cart,
-.buy-now {
-    border: none;
-    padding: 17px 25px;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 15px;
-    transition: 0.2s;
-}
-
-.add-cart {
-    background: #111;
-    color: white;
-    flex: 1;
-}
-
-.buy-now {
-    background: #ddd;
-    color: #111;
-    flex: 1;
-}
-
-.add-cart:hover,
-.buy-now:hover {
-    transform: translateY(-2px);
-}
-
-/* TRUST */
-
-.trust {
-    max-width: 1100px;
-    margin: 20px auto 80px;
-    padding: 0 5%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.trust-box {
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    text-align: center;
-}
-
-.trust-box h3 {
-    margin-bottom: 8px;
-}
-
-.trust-box p {
-    color: #777;
-    font-size: 14px;
-}
-
-/* DETAILS */
-
-.details {
-    background: #111;
-    color: white;
-    padding: 90px 8%;
-}
-
-.details-container {
-    max-width: 1100px;
-    margin: auto;
-}
-
-.details h2 {
-    font-size: 42px;
-    margin-bottom: 35px;
-}
-
-.detail-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-}
-
-.detail-card {
-    border: 1px solid #333;
-    border-radius: 15px;
-    padding: 30px;
-}
-
-.detail-card h3 {
-    margin-bottom: 12px;
-}
-
-.detail-card p {
-    color: #aaa;
-    line-height: 1.6;
-}
-
-/* STORY */
-
-.story {
-    max-width: 1000px;
-    margin: auto;
-    padding: 90px 6%;
-    text-align: center;
-}
-
-.story h2 {
-    font-size: 42px;
-    margin-bottom: 20px;
-}
-
-.story p {
-    color: #666;
-    line-height: 1.8;
-    font-size: 17px;
-}
-
-/* FOOTER */
-
-footer {
-    background: #111;
-    color: white;
-    text-align: center;
-    padding: 35px;
-}
-
-footer p {
-    color: #888;
-    margin-top: 8px;
-}
-
-/* CART POPUP */
-
-.popup {
-    position: fixed;
-    top: 90px;
-    right: 25px;
-    background: #111;
-    color: white;
-    padding: 18px 25px;
-    border-radius: 12px;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.25);
-    transform: translateX(150%);
-    transition: 0.4s ease;
-    z-index: 2000;
-}
-
-.popup.show {
-    transform: translateX(0);
-}
-
-.popup-title {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.popup-text {
-    color: #ccc;
-    font-size: 13px;
-}
-
-/* MOBILE */
-
-@media (max-width: 850px) {
-
-    .nav-links {
-        display: none;
-    }
-
-    .hero {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding-top: 35px;
-    }
-
-    .product-info h1 {
-        font-size: 40px;
-    }
-
-    .trust {
-        grid-template-columns: 1fr;
-    }
-
-    .detail-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .details h2,
-    .story h2 {
-        font-size: 32px;
-    }
-
-    .buttons {
-        flex-direction: column;
-    }
-
-}
-/* =========================================
-   PREMIUM TECH PRODUCT SPECS
-========================================= */
-
-.tech-specs,
-.size-guide {
-    margin-top: 55px;
-    padding: 30px 0;
-}
-
-.spec-header {
-    margin-bottom: 25px;
-}
-
-.spec-label {
-    display: inline-block;
-    font-size: 10px;
-    letter-spacing: 3px;
-    color: #888;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-
-.spec-header h2 {
-    font-size: 30px;
-    margin-bottom: 8px;
-    letter-spacing: -1px;
-}
-
-.spec-header p {
-    color: #777;
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-
-/* SPEC GRID */
-
-.spec-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-}
-
-.spec-card {
-    position: relative;
-
-    min-height: 125px;
-
-    padding: 22px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,0.075),
-            rgba(255,255,255,0.025)
-        );
-
-    border: 1px solid rgba(255,255,255,0.1);
-
-    border-radius: 18px;
-
-    overflow: hidden;
-
-    transition:
-        transform 0.4s ease,
-        border-color 0.4s ease,
-        box-shadow 0.4s ease;
-}
-
-.spec-card::before {
-    content: "";
-
-    position: absolute;
-
-    width: 120px;
-    height: 120px;
-
-    right: -60px;
-    top: -60px;
-
-    background: rgba(255,255,255,0.05);
-
-    border-radius: 50%;
-
-    transition: 0.5s;
-}
-
-.spec-card:hover {
-    transform: translateY(-6px);
-
-    border-color: rgba(255,255,255,0.3);
-
-    box-shadow:
-        0 15px 45px rgba(0,0,0,0.4);
-}
-
-.spec-card:hover::before {
-    transform: scale(2);
-}
-
-.spec-icon {
-    display: block;
-
-    font-size: 18px;
-
-    margin-bottom: 15px;
-
-    color: white;
-}
-
-.spec-card small {
-    display: block;
-
-    font-size: 9px;
-
-    letter-spacing: 2px;
-
-    color: #666;
-
-    margin-bottom: 7px;
-}
-
-.spec-card strong {
-    font-size: 14px;
-
-    font-weight: 600;
-
-    color: #eee;
-}
-
-
-/* =========================================
-   SIZE TABLE
-========================================= */
-
-.table-wrapper {
-    width: 100%;
-
-    overflow-x: auto;
-
-    border-radius: 18px;
-
-    border: 1px solid rgba(255,255,255,0.1);
-
-    background: rgba(255,255,255,0.025);
-}
-
-.size-guide table {
-    width: 100%;
-
-    border-collapse: collapse;
-
-    min-width: 600px;
-}
-
-.size-guide th,
-.size-guide td {
-    padding: 18px 20px;
-
-    text-align: center;
-
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-
-    font-size: 13px;
-}
-
-.size-guide th {
-    font-size: 10px;
-
-    letter-spacing: 2px;
-
-    color: #777;
-
-    background: rgba(255,255,255,0.035);
-}
-
-.size-guide td {
-    color: #ccc;
-}
-
-.size-guide td:first-child {
-    color: white;
-
-    font-weight: bold;
-}
-
-.size-guide tr {
-    transition: 0.3s;
-}
-
-.size-guide tbody tr:hover {
-    background: rgba(255,255,255,0.045);
-}
-
-.measurement-note {
-    margin-top: 12px;
-
-    padding: 15px 18px;
-
-    border-left: 2px solid rgba(255,255,255,0.4);
-
-    background: rgba(255,255,255,0.025);
-
-    display: flex;
-
-    gap: 15px;
-
-    font-size: 11px;
-
-    color: #666;
-}
-
-.measurement-note strong {
-    color: #aaa;
-
-    letter-spacing: 1px;
-}
-
-
-/* =========================================
-   MOBILE
-========================================= */
-
-@media (max-width: 700px) {
-
-    .spec-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .spec-card {
-        min-height: 115px;
-        padding: 17px;
-    }
-
-    .spec-header h2 {
-        font-size: 25px;
-    }
-
-    .measurement-note {
-        flex-direction: column;
-        gap: 6px;
-    }
-}
-
-@media (max-width: 450px) {
-
-    .spec-grid {
-        grid-template-columns: 1fr;
-    }
-
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+    font-family:Inter,Arial,Helvetica,sans-serif;
+    background:#070707;color:#f5f5f5;line-height:1.5;
+    overflow-x:hidden;
+}
+body:before{
+    content:"";position:fixed;inset:-30%;
+    background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.07),transparent 25%),
+               radial-gradient(circle at 80% 70%,rgba(255,255,255,.045),transparent 25%);
+    pointer-events:none;z-index:-1;
+}
+a{text-decoration:none;color:inherit}
+button{font:inherit}
+.nav{
+    position:sticky;top:0;z-index:1000;height:72px;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 6%;background:rgba(7,7,7,.78);
+    backdrop-filter:blur(18px);border-bottom:1px solid #202020;
+}
+.logo{font-size:25px;font-weight:900;letter-spacing:4px}
+.navlinks{display:flex;gap:28px;color:#aaa;font-size:13px}
+.navlinks a:hover{color:#fff}
+.nav-right{display:flex;gap:10px;align-items:center}
+.nav-btn{
+    border:1px solid #333;background:#111;color:#fff;border-radius:999px;
+    padding:10px 15px;cursor:pointer;transition:.3s;
+}
+.nav-btn:hover{border-color:#777;transform:translateY(-2px)}
+.cart-count{display:inline-flex;min-width:20px;height:20px;align-items:center;justify-content:center;
+    background:#fff;color:#000;border-radius:50%;font-size:11px;margin-left:5px;font-weight:800}
+
+.hero{
+    max-width:1280px;margin:auto;padding:65px 5% 80px;
+    display:grid;grid-template-columns:1.08fr .92fr;gap:70px;align-items:start;
+}
+.gallery-wrap{position:sticky;top:100px}
+.main-gallery{
+    position:relative;aspect-ratio:1/1.12;background:#111;border:1px solid #222;
+    border-radius:28px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.45);
+}
+.main-gallery img{width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .25s}
+.main-gallery.zoomed img{transform:scale(1.13)}
+.gallery-arrow{
+    position:absolute;top:50%;transform:translateY(-50%);width:45px;height:45px;
+    border-radius:50%;border:1px solid rgba(255,255,255,.22);
+    background:rgba(0,0,0,.55);color:#fff;cursor:pointer;z-index:3;
+    backdrop-filter:blur(8px);transition:.3s;
+}
+.gallery-arrow:hover{background:#fff;color:#000;transform:translateY(-50%) scale(1.08)}
+.prev{left:16px}.next{right:16px}
+.zoom-label{
+    position:absolute;right:16px;top:16px;background:rgba(0,0,0,.55);
+    border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:8px 12px;
+    font-size:10px;letter-spacing:1px;color:#ccc;cursor:pointer;z-index:3;
+}
+.dots{position:absolute;bottom:15px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:3}
+.dot{width:7px;height:7px;border-radius:50%;background:#666;border:0;cursor:pointer;transition:.3s}
+.dot.active{background:#fff;transform:scale(1.35)}
+.thumbs{display:flex;gap:10px;margin-top:13px;overflow-x:auto;padding-bottom:4px}
+.thumb{
+    flex:0 0 76px;height:76px;object-fit:cover;border-radius:13px;cursor:pointer;
+    opacity:.45;border:1px solid #292929;transition:.3s;
+}
+.thumb:hover,.thumb.active{opacity:1;border-color:#fff;transform:translateY(-2px)}
+
+.product-info{padding-top:8px}
+.eyebrow{font-size:10px;letter-spacing:3px;color:#777;font-weight:800;margin-bottom:13px}
+.product-info h1{font-size:clamp(40px,5vw,64px);line-height:.95;letter-spacing:-3px;margin-bottom:14px}
+.subtitle{color:#8b8b8b;font-size:15px;margin-bottom:25px}
+.price{font-size:29px;font-weight:800;margin-bottom:26px}
+.description{color:#aaa;font-size:14px;line-height:1.8;margin-bottom:30px;max-width:560px}
+
+.option-title{font-size:10px;letter-spacing:2px;color:#777;font-weight:800;margin:23px 0 11px}
+.sizes{display:flex;gap:9px;flex-wrap:wrap}
+.size-btn{
+    width:58px;height:47px;border:1px solid #333;background:#0e0e0e;color:#fff;
+    border-radius:10px;cursor:pointer;font-weight:800;transition:.25s;
+}
+.size-btn:hover{border-color:#888}
+.size-btn.selected{background:#fff;color:#000;border-color:#fff;box-shadow:0 0 24px rgba(255,255,255,.12)}
+
+.selected-size{
+    margin-top:12px;padding:13px 15px;background:#0e0e0e;border:1px solid #222;border-radius:12px;
+    color:#aaa;font-size:12px;display:none;animation:slideIn .35s ease;
+}
+.selected-size.show{display:block}
+.selected-size strong{color:#fff}
+
+.qty{display:flex;align-items:center;gap:14px}
+.qty button{
+    width:40px;height:40px;border-radius:10px;border:1px solid #333;background:#101010;color:#fff;
+    cursor:pointer;font-size:20px;transition:.25s;
+}
+.qty button:hover{background:#fff;color:#000}
+.qty span{min-width:25px;text-align:center;font-weight:800}
+
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px}
+.action{
+    min-height:54px;border-radius:13px;border:1px solid #333;cursor:pointer;font-weight:900;
+    letter-spacing:.5px;transition:.3s;
+}
+.add{background:#fff;color:#000}.buy{background:#151515;color:#fff}
+.action:hover{transform:translateY(-3px);box-shadow:0 15px 35px rgba(0,0,0,.35)}
+.action:active{transform:scale(.98)}
+
+.quick-info{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:15px}
+.quick{padding:14px 10px;background:#0c0c0c;border:1px solid #1f1f1f;border-radius:12px;text-align:center}
+.quick b{display:block;font-size:11px}.quick span{font-size:9px;color:#666}
+
+.section{max-width:1120px;margin:auto;padding:80px 5%}
+.section.dark{max-width:none;background:#0b0b0b;border-top:1px solid #171717;border-bottom:1px solid #171717}
+.section-inner{max-width:1120px;margin:auto}
+.section-head{margin-bottom:28px}
+.section-tag{font-size:9px;letter-spacing:3px;color:#666;font-weight:900}
+.section h2{font-size:clamp(30px,4vw,45px);letter-spacing:-1.5px;margin-top:7px}
+.section-head p{color:#777;font-size:13px;margin-top:8px}
+
+.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.spec{
+    position:relative;padding:24px;min-height:145px;border:1px solid #242424;
+    background:linear-gradient(145deg,#111,#0b0b0b);border-radius:18px;overflow:hidden;
+    transition:.4s;
+}
+.spec:after{
+    content:"";position:absolute;width:120px;height:120px;right:-60px;top:-60px;
+    border-radius:50%;border:1px solid #2a2a2a;transition:.5s;
+}
+.spec:hover{transform:translateY(-6px);border-color:#555;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.spec:hover:after{transform:scale(1.8)}
+.spec-icon{font-size:19px;margin-bottom:22px}
+.spec small{display:block;font-size:9px;letter-spacing:2px;color:#666;margin-bottom:6px}
+.spec strong{font-size:15px}
+
+.table-wrap{overflow-x:auto;border:1px solid #252525;border-radius:18px}
+table{width:100%;min-width:720px;border-collapse:collapse}
+th,td{padding:17px 14px;text-align:center;border-bottom:1px solid #1d1d1d;font-size:12px}
+th{background:#111;color:#777;font-size:9px;letter-spacing:2px}
+td:first-child{font-weight:900;color:#fff}
+tr:hover td{background:#101010}
+.measure-note{margin-top:12px;color:#666;font-size:11px;padding:13px 15px;border-left:2px solid #555;background:#0d0d0d}
+
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.feature{padding:25px;border:1px solid #222;border-radius:17px;background:#0d0d0d;transition:.35s}
+.feature:hover{transform:translateY(-5px);border-color:#555}
+.feature h3{font-size:15px;margin-bottom:8px}.feature p{font-size:12px;color:#777;line-height:1.7}
+
+.care{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.care-box{padding:24px;border:1px solid #222;border-radius:17px;background:#0d0d0d}
+.care-box h3{font-size:14px;margin-bottom:10px}.care-box p{font-size:12px;color:#777;line-height:1.8}
+
+.story{text-align:center;max-width:850px}
+.story p{color:#777;font-size:15px;line-height:1.9;margin-top:15px}
+
+footer{padding:45px 20px;text-align:center;border-top:1px solid #1a1a1a;color:#666;font-size:12px}
+footer strong{color:#fff;letter-spacing:3px}
+
+.popup{
+    position:fixed;right:22px;bottom:22px;width:min(460px,calc(100% - 30px));
+    background:rgba(14,14,14,.96);border:1px solid #333;border-radius:21px;padding:20px;
+    z-index:5000;box-shadow:0 25px 90px rgba(0,0,0,.65);backdrop-filter:blur(20px);
+    display:grid;grid-template-columns:auto 1fr;gap:13px;align-items:center;
+    opacity:0;pointer-events:none;transform:translateY(25px) scale(.96);
+    transition:.45s cubic-bezier(.2,.8,.2,1);overflow:hidden;
+}
+.popup.show{opacity:1;pointer-events:auto;transform:none}
+.popup-icon{width:43px;height:43px;border:1px solid #555;border-radius:50%;display:grid;place-items:center;font-weight:900}
+.popup small{font-size:8px;letter-spacing:2px;color:#666}
+.popup h3{font-size:15px;margin:3px 0}.popup p{font-size:11px;color:#777}
+.popup-actions{grid-column:1/-1;display:flex;gap:8px}
+.popup-actions button{
+    flex:1;padding:11px;border-radius:10px;border:1px solid #333;background:#151515;color:#fff;
+    cursor:pointer;font-size:9px;font-weight:900;letter-spacing:1px;transition:.25s;
+}
+.popup-actions button:hover{background:#fff;color:#000}
+.popup-actions .primary{background:#fff;color:#000}
+
+.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,30px);opacity:0;
+    background:#fff;color:#000;padding:12px 18px;border-radius:999px;font-size:11px;font-weight:800;
+    z-index:6000;transition:.35s;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@keyframes slideIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.reveal{animation:fadeUp .7s ease both}
+
+@media(max-width:900px){
+    .hero{grid-template-columns:1fr;gap:38px;padding-top:35px}
+    .gallery-wrap{position:relative;top:auto}
+    .spec-grid,.feature-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:650px){
+    .nav{height:64px;padding:0 4%}.navlinks{display:none}
+    .logo{font-size:21px}.nav-btn{padding:8px 11px}
+    .hero{padding:25px 4% 55px}
+    .product-info h1{letter-spacing:-2px}
+    .actions,.care{grid-template-columns:1fr}
+    .quick-info{grid-template-columns:1fr 1fr 1fr}
+    .spec-grid,.feature-grid{grid-template-columns:1fr}
+    .section{padding:60px 4%}
+    .popup{right:15px;bottom:15px}
 }
 </style>
 </head>
 
-
 <body>
 
-<!-- NAVBAR -->
-
-<nav>
-
+<nav class="nav">
     <div class="logo">YASH</div>
-
-    <div class="nav-links">
+    <div class="navlinks">
         <a href="#product">Product</a>
-        <a href="#details">Details</a>
+        <a href="#specifications">Specifications</a>
+        <a href="#size-guide">Size Guide</a>
         <a href="#story">Story</a>
     </div>
-
-    <div class="cart">
-        🛒 Cart <span id="cartCount">0</span>
+    <div class="nav-right">
+        <button class="nav-btn" onclick="window.location.href='orders.html'">
+            ORDERS <span class="cart-count" id="navOrderCount">0</span>
+        </button>
+        <button class="nav-btn" onclick="scrollToCart()">🛒 <span id="cartCount">0</span></button>
     </div>
-
 </nav>
 
-
-<!-- PRODUCT -->
+<main>
 
 <section class="hero" id="product">
 
-    <!-- GALLERY -->
+    <div class="gallery-wrap reveal">
 
-    <div class="gallery">
+        <div class="main-gallery" id="mainGallery">
+            <img id="mainProductImage" src="product.png" alt="product.png" draggable="false">
 
-        <div class="main-image">
-            <img id="mainProductImage"
-                 src="product.png"
-                 alt="YASH T-Shirt">
+            <button class="gallery-arrow prev" onclick="previousImage()" aria-label="Previous image">←</button>
+            <button class="gallery-arrow next" onclick="nextImage()" aria-label="Next image">→</button>
+
+            <button class="zoom-label" onclick="toggleZoom()">CLICK TO ZOOM</button>
+
+            <div class="dots" id="dots"></div>
         </div>
 
-        <div class="thumbnails">
-
-            <img class="thumbnail active"
-                 src="product.png"
-                 onclick="changeImage('product.png', this)">
-
-            <img class="thumbnail"
-                 src="product1.jpg.jpg"
-                 onclick="changeImage('product1.jpg.jpg', this)">
-
-            <img class="thumbnail"
-                 src="product2.jpg.jpg"
-                 onclick="changeImage('product2.jpg.jpg', this)">
-
-            <img class="thumbnail"
-                 src="product3.jpg.jpg"
-                 onclick="changeImage('product3.jpg.jpg', this)">
-
-        </div>
+        <div class="thumbs" id="thumbs"></div>
 
     </div>
 
+    <div class="product-info reveal">
 
-    <!-- PRODUCT INFORMATION -->
+        <div class="eyebrow">YASH / ESSENTIAL SERIES</div>
 
-    <div class="product-info">
+        <!-- PRODUCT NAME = IMAGE FILE NAME -->
+        <h1>product.png</h1>
 
-        <h1>YASH T-Shirt</h1>
+        <p class="subtitle">Premium everyday essential · Engineered for comfort</p>
 
-        <p class="subtitle">
-            Premium everyday essentials.
+        <div class="price">₹999</div>
+
+        <p class="description">
+            A clean, versatile everyday piece with a premium-focused construction.
+            Explore the technical specifications, detailed measurements and fit guide below.
         </p>
 
-        <div class="price">
-            ₹999
-        </div>
-
-        <p class="product-description">
-            A clean and versatile T-shirt designed for everyday wear.
-            Minimal design, premium feel and an effortless look.
-        </p>
-
-
-        <!-- SIZE -->
-
-        <div class="option-title">
-            SELECT SIZE
-        </div>
+        <div class="option-title">SELECT SIZE</div>
 
         <div class="sizes">
-
-            <button class="size-btn"
-                    onclick="selectSize('S', this)">
-                S
-            </button>
-
-            <button class="size-btn"
-                    onclick="selectSize('M', this)">
-                M
-            </button>
-
-            <button class="size-btn"
-                    onclick="selectSize('L', this)">
-                L
-            </button>
-
-            <button class="size-btn"
-                    onclick="selectSize('XL', this)">
-                XL
-            </button>
-
+            <button class="size-btn" onclick="selectSize('S',this)">S</button>
+            <button class="size-btn" onclick="selectSize('M',this)">M</button>
+            <button class="size-btn" onclick="selectSize('L',this)">L</button>
+            <button class="size-btn" onclick="selectSize('XL',this)">XL</button>
         </div>
 
-
-        <!-- SIZE INFORMATION -->
-
-        <div class="size-details" id="sizeDetails">
-
-            <strong id="sizeTitle">
-                Select a size
-            </strong>
-
-            <p id="sizeDescription">
-                Select your size to see the recommended measurements.
-            </p>
-
+        <div class="selected-size" id="selectedSizeBox">
+            <strong id="selectedSizeTitle">Size M</strong>
+            <span id="selectedSizeText">Select a size to see measurements.</span>
         </div>
 
+        <div class="option-title">QUANTITY</div>
 
-        <!-- QUANTITY -->
-
-        <div class="option-title">
-            QUANTITY
+        <div class="qty">
+            <button onclick="decreaseQuantity()">−</button>
+            <span id="quantity">1</span>
+            <button onclick="increaseQuantity()">+</button>
         </div>
 
-        <div class="quantity">
-
-            <button onclick="decreaseQuantity()">
-                −
-            </button>
-
-            <span id="quantity">
-                1
-            </span>
-
-            <button onclick="increaseQuantity()">
-                +
-            </button>
-
+        <div class="actions">
+            <button class="action add" onclick="addToCart()">ADD TO CART</button>
+            <button class="action buy" onclick="buyNow()">BUY NOW →</button>
         </div>
 
-
-        <!-- BUTTONS -->
-
-        <div class="buttons">
-
-            <button class="add-cart"
-                    onclick="addToCart()">
-                ADD TO CART
-            </button>
-
-            <button class="buy-now"
-                    onclick="buyNow()">
-                BUY NOW
-            </button>
-
+        <div class="quick-info">
+            <div class="quick"><b>Premium</b><span>QUALITY FOCUS</span></div>
+            <div class="quick"><b>Fast</b><span>ORDER FLOW</span></div>
+            <div class="quick"><b>Easy</b><span>TRACKING</span></div>
         </div>
 
+    </div>
+</section>
+
+<section class="section dark" id="specifications">
+<div class="section-inner">
+
+    <div class="section-head">
+        <div class="section-tag">PRODUCT ENGINEERING</div>
+        <h2>Built with purpose.</h2>
+        <p>Technical specifications presented in a premium product format.</p>
+    </div>
+
+    <div class="spec-grid">
+
+        <!-- IMPORTANT: VERIFY THESE VALUES BEFORE PUBLISHING -->
+        <div class="spec">
+            <div class="spec-icon">◈</div>
+            <small>FABRIC</small>
+            <strong>Enter actual fabric composition</strong>
+        </div>
+
+        <div class="spec">
+            <div class="spec-icon">◇</div>
+            <small>GSM</small>
+            <strong>Enter actual GSM</strong>
+        </div>
+
+        <div class="spec">
+            <div class="spec-icon">✦</div>
+            <small>THREAD</small>
+            <strong>Enter actual thread / yarn specification</strong>
+        </div>
+
+        <div class="spec">
+            <div class="spec-icon">◉</div>
+            <small>FIT</small>
+            <strong>Relaxed / Oversized</strong>
+        </div>
+
+        <div class="spec">
+            <div class="spec-icon">▣</div>
+            <small>NECK</small>
+            <strong>Ribbed Crew Neck</strong>
+        </div>
+
+        <div class="spec">
+            <div class="spec-icon">⌁</div>
+            <small>CONSTRUCTION</small>
+            <strong>Enter actual stitching / construction</strong>
+        </div>
+
+    </div>
+</div>
+</section>
+
+<section class="section" id="size-guide">
+
+    <div class="section-head">
+        <div class="section-tag">PRECISION FIT</div>
+        <h2>Size Guide</h2>
+        <p>Garment measurements. Verify these against your actual garment before publishing.</p>
+    </div>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>SIZE</th>
+                    <th>LENGTH</th>
+                    <th>CHEST</th>
+                    <th>SHOULDER</th>
+                    <th>SLEEVE</th>
+                    <th>WAIST</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>S</td><td>27"</td><td>38"</td><td>17"</td><td>8.5"</td><td>38"</td></tr>
+                <tr><td>M</td><td>28"</td><td>40"</td><td>18"</td><td>9"</td><td>40"</td></tr>
+                <tr><td>L</td><td>29"</td><td>42"</td><td>19"</td><td>9.5"</td><td>42"</td></tr>
+                <tr><td>XL</td><td>30"</td><td>44"</td><td>20"</td><td>10"</td><td>44"</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="measure-note">
+        <strong>MEASUREMENT NOTE:</strong>&nbsp;
+        These dimensions are example values carried into the design. Replace them with your manufacturer's
+        actual measurements. Manufacturing tolerance can cause small variations.
     </div>
 
 </section>
 
+<section class="section dark">
+<div class="section-inner">
 
-<!-- TRUST -->
-
-<section class="trust">
-
-    <div class="trust-box">
-        <h3>Premium Quality</h3>
-        <p>Designed with comfort and everyday wear in mind.</p>
+    <div class="section-head">
+        <div class="section-tag">DETAILS</div>
+        <h2>Designed around the essentials.</h2>
     </div>
 
-    <div class="trust-box">
-        <h3>Easy Returns</h3>
-        <p>Simple and customer-friendly return experience.</p>
-    </div>
+    <div class="feature-grid">
 
-    <div class="trust-box">
-        <h3>Secure Shopping</h3>
-        <p>Your shopping experience is designed to be simple and safe.</p>
-    </div>
+        <div class="feature">
+            <h3>Fabric & Feel</h3>
+            <p>Use this area for the verified fabric composition, softness, breathability and hand-feel details.</p>
+        </div>
 
-</section>
+        <div class="feature">
+            <h3>Weight & GSM</h3>
+            <p>GSM communicates fabric weight. Add the exact verified GSM of your garment here.</p>
+        </div>
 
+        <div class="feature">
+            <h3>Thread & Stitching</h3>
+            <p>Describe the actual yarn, stitch density, seam construction or reinforcement used on the garment.</p>
+        </div>
 
-<!-- DETAILS -->
+        <div class="feature">
+            <h3>Fit & Silhouette</h3>
+            <p>Relaxed, regular or oversized fit can be explained here together with the intended silhouette.</p>
+        </div>
 
-<section class="details" id="details">
+        <div class="feature">
+            <h3>Neck & Finish</h3>
+            <p>Describe the verified collar rib, neckline construction and finishing details.</p>
+        </div>
 
-    <div class="details-container">
-
-        <h2>Built for everyday.</h2>
-
-        <div class="detail-grid">
-
-            <div class="detail-card">
-                <h3>Premium Feel</h3>
-                <p>
-                    A comfortable everyday construction designed
-                    for a clean premium appearance.
-                </p>
-            </div>
-
-            <div class="detail-card">
-                <h3>Minimal Design</h3>
-                <p>
-                    Simple styling that works with different
-                    outfits and occasions.
-                </p>
-            </div>
-
-            <div class="detail-card">
-                <h3>Easy Fit</h3>
-                <p>
-                    Designed to provide a relaxed and comfortable
-                    everyday silhouette.
-                </p>
-            </div>
-
+        <div class="feature">
+            <h3>Everyday Use</h3>
+            <p>Position the product around comfort, styling flexibility and everyday wear without unsupported claims.</p>
         </div>
 
     </div>
-
+</div>
 </section>
 
+<section class="section">
+<div class="section-inner">
 
-<!-- STORY -->
-
-<section class="story" id="story">
-
-    <h2>The YASH Story</h2>
-
-    <p>
-        YASH is built around a simple idea:
-        everyday clothing should feel effortless,
-        look clean and still have its own identity.
-    </p>
-
-</section>
-
-
-<!-- FOOTER -->
-
-<footer>
-
-    <strong>YASH</strong>
-
-    <p>
-        Premium everyday essentials.
-    </p>
-
-</footer>
-
-
-<!-- CART POPUP -->
-
-<div class="popup" id="cartPopup">
-
-    <div class="popup-title">
-        ✓ Added to cart
+    <div class="section-head">
+        <div class="section-tag">CARE SYSTEM</div>
+        <h2>Keep it fresh.</h2>
     </div>
 
-    <div class="popup-text">
-        Your YASH T-Shirt has been added successfully.
+    <div class="care">
+        <div class="care-box">
+            <h3>Washing</h3>
+            <p>Follow the care label on the actual garment. Add your verified machine-wash / hand-wash instructions here.</p>
+        </div>
+        <div class="care-box">
+            <h3>Drying & Ironing</h3>
+            <p>Use the manufacturer's verified drying and ironing guidance. Avoid publishing unsupported temperature claims.</p>
+        </div>
     </div>
 
 </div>
+</section>
 
+<section class="section dark" id="story">
+<div class="section-inner story">
+
+    <div class="section-tag">THE BRAND</div>
+    <h2>The YASH Story</h2>
+
+    <p>
+        YASH is built around a simple idea: everyday clothing should feel effortless,
+        look clean and have its own identity. This product page combines a minimal
+        visual language with a technical presentation of the garment.
+    </p>
+
+</div>
+</section>
+
+</main>
+
+<footer>
+    <strong>YASH</strong>
+    <div>Premium everyday essentials.</div>
+</footer>
+
+<div class="popup" id="cartPopup">
+    <div class="popup-icon">✓</div>
+    <div>
+        <small>CART UPDATED</small>
+        <h3 id="popupTitle">Added to your bag</h3>
+        <p id="popupText">product.png · Size M · Qty 1</p>
+    </div>
+    <div class="popup-actions">
+        <button onclick="closePopup()">CONTINUE SHOPPING</button>
+        <button class="primary" onclick="window.location.href='orders.html'">MY ORDERS →</button>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
+/* ==========================================================
+   PRODUCT CONFIGURATION
+   Change verified product specifications here later.
+========================================================== */
 
-/* IMAGE GALLERY */
+const PRODUCT = {
+    name: "product.png",
+    price: 999,
 
-function changeImage(image, thumbnail) {
+    images: [
+        "product.png",
+        "product1.jpg.jpg",
+        "product2.jpg.jpg",
+        "product3.jpg.jpg"
+    ],
 
-    document.getElementById("mainProductImage").src = image;
+    /* Replace these example measurements with actual measurements. */
+    sizes: {
+        S:  { length:'27"', chest:'38"', shoulder:'17"', sleeve:'8.5"', waist:'38"' },
+        M:  { length:'28"', chest:'40"', shoulder:'18"', sleeve:'9"',   waist:'40"' },
+        L:  { length:'29"', chest:'42"', shoulder:'19"', sleeve:'9.5"', waist:'42"' },
+        XL: { length:'30"', chest:'44"', shoulder:'20"', sleeve:'10"',  waist:'44"' }
+    }
+};
 
-    document.querySelectorAll(".thumbnail").forEach(function(img) {
-        img.classList.remove("active");
-    });
-
-    thumbnail.classList.add("active");
-}
-
-
-/* SIZE SELECTION */
+/* ==========================================================
+   STATE
+========================================================== */
 
 let selectedSize = "";
+let quantity = 1;
+let currentImage = 0;
+let cartCount = Number(localStorage.getItem("yashCartCount") || 0);
+let popupTimer;
 
-function selectSize(size, button) {
+/* ==========================================================
+   INITIALIZE
+========================================================== */
+
+document.addEventListener("DOMContentLoaded", function(){
+    renderGallery();
+    updateCartUI();
+});
+
+/* ==========================================================
+   IMAGE SLIDER
+========================================================== */
+
+function renderGallery(){
+
+    const thumbs = document.getElementById("thumbs");
+    const dots = document.getElementById("dots");
+
+    thumbs.innerHTML = "";
+    dots.innerHTML = "";
+
+    PRODUCT.images.forEach(function(image,index){
+
+        const thumb = document.createElement("img");
+        thumb.className = "thumb" + (index === currentImage ? " active" : "");
+        thumb.src = image;
+        thumb.alt = PRODUCT.name + " image " + (index + 1);
+        thumb.onclick = function(){ showImage(index); };
+
+        thumbs.appendChild(thumb);
+
+        const dot = document.createElement("button");
+        dot.className = "dot" + (index === currentImage ? " active" : "");
+        dot.onclick = function(){ showImage(index); };
+        dots.appendChild(dot);
+    });
+
+    document.getElementById("mainProductImage").src = PRODUCT.images[currentImage];
+}
+
+function showImage(index){
+
+    if(index < 0) index = PRODUCT.images.length - 1;
+    if(index >= PRODUCT.images.length) index = 0;
+
+    currentImage = index;
+
+    const main = document.getElementById("mainProductImage");
+
+    main.style.opacity = "0";
+
+    setTimeout(function(){
+        main.src = PRODUCT.images[currentImage];
+        main.style.opacity = "1";
+    },120);
+
+    document.querySelectorAll(".thumb").forEach(function(img,i){
+        img.classList.toggle("active",i === currentImage);
+    });
+
+    document.querySelectorAll(".dot").forEach(function(dot,i){
+        dot.classList.toggle("active",i === currentImage);
+    });
+}
+
+function nextImage(){
+    showImage(currentImage + 1);
+}
+
+function previousImage(){
+    showImage(currentImage - 1);
+}
+
+function toggleZoom(){
+    document.getElementById("mainGallery").classList.toggle("zoomed");
+}
+
+/* Mobile swipe / desktop drag */
+let touchStartX = 0;
+
+document.getElementById("mainGallery").addEventListener("touchstart",function(e){
+    touchStartX = e.changedTouches[0].screenX;
+},{passive:true});
+
+document.getElementById("mainGallery").addEventListener("touchend",function(e){
+
+    const touchEndX = e.changedTouches[0].screenX;
+    const distance = touchEndX - touchStartX;
+
+    if(Math.abs(distance) > 50){
+        if(distance < 0) nextImage();
+        else previousImage();
+    }
+},{passive:true});
+
+/* ==========================================================
+   SIZE
+========================================================== */
+
+function selectSize(size,button){
 
     selectedSize = size;
 
-    document.querySelectorAll(".size-btn").forEach(function(btn) {
+    document.querySelectorAll(".size-btn").forEach(function(btn){
         btn.classList.remove("selected");
     });
 
     button.classList.add("selected");
 
-    const sizeDetails = document.getElementById("sizeDetails");
-    const sizeTitle = document.getElementById("sizeTitle");
-    const sizeDescription = document.getElementById("sizeDescription");
+    const data = PRODUCT.sizes[size];
 
-    sizeDetails.classList.add("show");
+    document.getElementById("selectedSizeTitle").innerText =
+        "Size " + size;
 
-    if (size === "S") {
+    document.getElementById("selectedSizeText").innerText =
+        "Length " + data.length +
+        " · Chest " + data.chest +
+        " · Shoulder " + data.shoulder +
+        " · Sleeve " + data.sleeve +
+        " · Waist " + data.waist;
 
-        sizeTitle.innerText = "Size S";
-
-        sizeDescription.innerText =
-            "Recommended for a smaller fit. Approx. chest: 36–38 inches.";
-
-    }
-
-    else if (size === "M") {
-
-        sizeTitle.innerText = "Size M";
-
-        sizeDescription.innerText =
-            "Recommended for a regular fit. Approx. chest: 38–40 inches.";
-
-    }
-
-    else if (size === "L") {
-
-        sizeTitle.innerText = "Size L";
-
-        sizeDescription.innerText =
-            "Recommended for a relaxed fit. Approx. chest: 40–42 inches.";
-
-    }
-
-    else if (size === "XL") {
-
-        sizeTitle.innerText = "Size XL";
-
-        sizeDescription.innerText =
-            "Recommended for a roomier fit. Approx. chest: 42–44 inches.";
-
-    }
-
+    document.getElementById("selectedSizeBox").classList.add("show");
 }
 
+/* ==========================================================
+   QUANTITY
+========================================================== */
 
-/* QUANTITY */
-
-let quantity = 1;
-
-function increaseQuantity() {
-
+function increaseQuantity(){
     quantity++;
-
-    document.getElementById("quantity").innerText = quantity;
-
+    updateQuantityUI();
 }
 
-function decreaseQuantity() {
+function decreaseQuantity(){
 
-    if (quantity > 1) {
-
+    if(quantity > 1){
         quantity--;
-
-        document.getElementById("quantity").innerText = quantity;
-
+        updateQuantityUI();
     }
-
 }
 
+function updateQuantityUI(){
+    document.getElementById("quantity").innerText = quantity;
+}
 
-/* ADD TO CART */
+/* ==========================================================
+   CART
+========================================================== */
 
-let cartCount = 0;
+function addToCart(){
 
-function addToCart() {
-
-    if (selectedSize === "") {
-
-        alert("Please select a size first.");
-
+    if(selectedSize === ""){
+        showToast("Please select a size first.");
         return;
-
     }
 
     cartCount += quantity;
 
-    document.getElementById("cartCount").innerText = cartCount;
+    localStorage.setItem("yashCartCount",cartCount);
+
+    updateCartUI();
 
     showCartPopup();
-
 }
-function saveOrder() {
+
+function updateCartUI(){
+
+    document.getElementById("cartCount").innerText = cartCount;
+
+    const orders =
+        JSON.parse(localStorage.getItem("yashOrders")) || [];
+
+    document.getElementById("navOrderCount").innerText =
+        orders.length;
+}
+
+/* ==========================================================
+   CART POPUP
+========================================================== */
+
+function showCartPopup(){
+
+    clearTimeout(popupTimer);
+
+    document.getElementById("popupTitle").innerText =
+        "Added to your bag";
+
+    document.getElementById("popupText").innerText =
+        PRODUCT.name +
+        " · Size " + selectedSize +
+        " · Qty " + quantity;
+
+    document.getElementById("cartPopup").classList.add("show");
+
+    popupTimer = setTimeout(closePopup,7000);
+}
+
+function closePopup(){
+    document.getElementById("cartPopup").classList.remove("show");
+}
+
+/* ==========================================================
+   BUY NOW / CREATE ORDER
+   Buy Now creates the browser-local order and opens Orders.
+========================================================== */
+
+function buyNow(){
+
+    if(selectedSize === ""){
+        showToast("Please select a size first.");
+        return;
+    }
+
+    createOrder();
+
+    window.location.href = "orders.html";
+}
+
+function createOrder(){
 
     const orders =
         JSON.parse(localStorage.getItem("yashOrders")) || [];
@@ -1091,20 +759,19 @@ function saveOrder() {
 
         id: "YSH-" + Date.now(),
 
-        product: "YASH T-Shirt",
+        product: PRODUCT.name,
 
-        image: "product.png",
+        image: PRODUCT.images[currentImage],
 
-        size: selectedSize || "M",
+        size: selectedSize,
 
-        quantity: quantity || 1,
+        quantity: quantity,
 
-        total: 999 * (quantity || 1),
+        total: PRODUCT.price * quantity,
 
         status: "Order Placed",
 
         date: new Date().toISOString()
-
     };
 
     orders.push(newOrder);
@@ -1114,48 +781,44 @@ function saveOrder() {
         JSON.stringify(orders)
     );
 
+    /* Reset cart counter after Buy Now */
+    cartCount = 0;
+    localStorage.setItem("yashCartCount","0");
 }
 
-/* CART POPUP */
+/* ==========================================================
+   NAVIGATION
+========================================================== */
 
-function showCartPopup() {
-
-    const popup = document.getElementById("cartPopup");
-
-    popup.classList.add("show");
-
-    setTimeout(function() {
-
-        popup.classList.remove("show");
-
-    }, 3000);
-
+function scrollToCart(){
+    document.getElementById("product").scrollIntoView({
+        behavior:"smooth"
+    });
 }
 
+/* ==========================================================
+   TOAST
+========================================================== */
 
-/* BUY NOW */
+let toastTimer;
 
-function buyNow() {
+function showToast(message){
 
-    if (selectedSize === "") {
+    const toast = document.getElementById("toast");
 
-        alert("Please select a size first.");
+    toast.innerText = message;
+    toast.classList.add("show");
 
-        return;
+    clearTimeout(toastTimer);
 
-    }
-
-    alert(
-        "Selected Size: " +
-        selectedSize +
-        "\nQuantity: " +
-        quantity +
-        "\n\nCheckout system will be connected next."
-    );
-
+    toastTimer = setTimeout(function(){
+        toast.classList.remove("show");
+    },2500);
 }
-
 </script>
 
 </body>
 </html>
+
+
+
