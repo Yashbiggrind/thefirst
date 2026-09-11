@@ -552,10 +552,252 @@ footer strong{color:#fff;letter-spacing:3px}
 .collection-rail i{height:1px;flex:1;background:#d7d7d7}
 .collection-rail b{color:#333;font-weight:900}
 
+
+/* ==========================================================
+   YASH CINEMATIC FUTURE INTRO
+   ========================================================== */
+#yashIntro{
+    position:fixed;
+    inset:0;
+    z-index:100000;
+    background:#050505;
+    display:grid;
+    place-items:center;
+    overflow:hidden;
+    isolation:isolate;
+    transition:opacity 1s cubic-bezier(.2,.8,.2,1),visibility 1s;
+}
+#yashIntro::before{
+    content:"";
+    position:absolute;
+    inset:-20%;
+    background:
+        radial-gradient(circle at 50% 50%,rgba(255,255,255,.09),transparent 24%),
+        radial-gradient(circle at 20% 30%,rgba(255,255,255,.035),transparent 25%),
+        radial-gradient(circle at 80% 70%,rgba(255,255,255,.025),transparent 25%);
+    animation:introAtmosphere 5s ease-in-out infinite;
+}
+#yashIntro::after{
+    content:"";
+    position:absolute;
+    left:-20%;
+    top:0;
+    width:30%;
+    height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);
+    filter:blur(18px);
+    transform:skewX(-14deg);
+    animation:introLightSweep 2.7s 1.5s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.intro-grid{
+    position:absolute;
+    inset:-30%;
+    opacity:.16;
+    background-image:
+        linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);
+    background-size:55px 55px;
+    transform:perspective(500px) rotateX(64deg) translateY(18%);
+    transform-origin:center bottom;
+    animation:introGrid 3.8s ease-out forwards;
+}
+.intro-particles{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+}
+.intro-particle{
+    position:absolute;
+    width:2px;
+    height:2px;
+    border-radius:50%;
+    background:#fff;
+    box-shadow:0 0 12px rgba(255,255,255,.8);
+    opacity:0;
+    animation:introParticle 2.4s ease-out forwards;
+}
+.intro-center{
+    position:relative;
+    z-index:3;
+    text-align:center;
+    transform:scale(.72);
+    animation:introCenter 2.9s cubic-bezier(.16,1,.3,1) forwards;
+}
+.intro-kicker{
+    font-size:8px;
+    letter-spacing:6px;
+    color:#777;
+    font-weight:800;
+    margin-bottom:25px;
+    opacity:0;
+    animation:introKicker .7s .35s ease forwards;
+}
+.intro-logo{
+    position:relative;
+    display:inline-block;
+    font-size:clamp(70px,15vw,180px);
+    line-height:.8;
+    font-weight:1000;
+    letter-spacing:clamp(7px,2vw,25px);
+    color:#fff;
+    text-shadow:
+        0 0 20px rgba(255,255,255,.16),
+        0 0 70px rgba(255,255,255,.07);
+    opacity:0;
+    animation:introLogo 1.55s .45s cubic-bezier(.16,1,.3,1) forwards;
+}
+.intro-logo::before,
+.intro-logo::after{
+    content:"YASH";
+    position:absolute;
+    inset:0;
+    color:#fff;
+    opacity:0;
+    pointer-events:none;
+}
+.intro-logo::before{
+    transform:translate(-5px,0);
+    clip-path:inset(0 0 55% 0);
+    animation:introGlitch 1.1s 1.15s steps(2,end) forwards;
+}
+.intro-logo::after{
+    transform:translate(5px,0);
+    clip-path:inset(55% 0 0 0);
+    animation:introGlitch 1.1s 1.22s steps(2,end) forwards;
+}
+.intro-line{
+    width:0;
+    height:1px;
+    margin:30px auto 0;
+    background:#fff;
+    box-shadow:0 0 18px rgba(255,255,255,.65);
+    animation:introLine 1.2s 1.25s cubic-bezier(.16,1,.3,1) forwards;
+}
+.intro-tag{
+    margin-top:18px;
+    font-size:8px;
+    letter-spacing:4px;
+    color:#666;
+    opacity:0;
+    animation:introTag .8s 1.45s ease forwards;
+}
+.intro-counter{
+    position:absolute;
+    z-index:4;
+    bottom:35px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:8px;
+    letter-spacing:3px;
+    color:#555;
+    white-space:nowrap;
+}
+.intro-counter span{color:#fff}
+.intro-scan{
+    position:absolute;
+    z-index:4;
+    left:0;
+    right:0;
+    height:1px;
+    top:-5%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.75),transparent);
+    box-shadow:0 0 20px rgba(255,255,255,.35);
+    animation:introScan 2.2s .7s ease-in-out forwards;
+}
+#yashIntro.hide{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+body.intro-active{overflow:hidden}
+
+@keyframes introCenter{
+    0%{transform:scale(.72);filter:blur(10px)}
+    45%{transform:scale(1);filter:blur(0)}
+    76%{transform:scale(1.02)}
+    100%{transform:scale(1)}
+}
+@keyframes introLogo{
+    0%{opacity:0;transform:scale(1.45) translateY(25px);filter:blur(18px);letter-spacing:35px}
+    45%{opacity:1;transform:scale(1.02) translateY(0);filter:blur(0);letter-spacing:clamp(7px,2vw,25px)}
+    72%{opacity:1}
+    100%{opacity:1}
+}
+@keyframes introKicker{
+    from{opacity:0;transform:translateY(10px);letter-spacing:12px}
+    to{opacity:1;transform:none;letter-spacing:6px}
+}
+@keyframes introLine{
+    from{width:0;opacity:0}
+    to{width:min(360px,55vw);opacity:1}
+}
+@keyframes introTag{
+    from{opacity:0;transform:translateY(8px)}
+    to{opacity:1;transform:none}
+}
+@keyframes introGlitch{
+    0%,65%{opacity:0}
+    70%{opacity:.8}
+    74%{opacity:0}
+    78%{opacity:.65}
+    83%{opacity:0}
+    88%{opacity:.35}
+    100%{opacity:0}
+}
+@keyframes introAtmosphere{
+    0%,100%{transform:scale(1) rotate(0deg);opacity:.75}
+    50%{transform:scale(1.12) rotate(4deg);opacity:1}
+}
+@keyframes introLightSweep{
+    0%{transform:translateX(0) skewX(-14deg);opacity:0}
+    15%{opacity:1}
+    100%{transform:translateX(500%) skewX(-14deg);opacity:0}
+}
+@keyframes introGrid{
+    from{transform:perspective(500px) rotateX(64deg) translateY(28%) scale(1.25);opacity:0}
+    to{transform:perspective(500px) rotateX(64deg) translateY(8%) scale(1);opacity:.16}
+}
+@keyframes introParticle{
+    0%{opacity:0;transform:translate3d(0,35px,0) scale(.4)}
+    20%{opacity:.8}
+    100%{opacity:0;transform:translate3d(var(--px),var(--py),0) scale(0)}
+}
+@keyframes introScan{
+    0%{top:-5%;opacity:0}
+    15%{opacity:1}
+    100%{top:105%;opacity:0}
+}
+@media(prefers-reduced-motion:reduce){
+    #yashIntro{display:none!important}
+}
+@media(max-width:650px){
+    .intro-kicker{letter-spacing:4px}
+    .intro-tag{letter-spacing:2.5px}
+}
+
 </style>
 </head>
 
-<body>
+<body class="intro-active">
+
+<!-- ==========================================================
+     YASH CINEMATIC INTRO
+     ========================================================== -->
+<div id="yashIntro" aria-label="YASH introduction">
+    <div class="intro-grid"></div>
+    <div class="intro-particles" id="introParticles"></div>
+    <div class="intro-scan"></div>
+
+    <div class="intro-center">
+        <div class="intro-kicker">EST. / YASH SYSTEM</div>
+        <div class="intro-logo">YASH</div>
+        <div class="intro-line"></div>
+        <div class="intro-tag">PREMIUM ESSENTIALS / FUTURE FORM</div>
+    </div>
+
+    <div class="intro-counter">INITIALIZING <span id="introPercent">00</span>%</div>
+</div>
+
 
 <nav class="nav">
     <div class="logo">YASH</div>
@@ -883,6 +1125,61 @@ footer strong{color:#fff;letter-spacing:3px}
 </aside>
 
 <div class="toast" id="toast"></div>
+
+
+<script>
+/* ==========================================================
+   YASH CINEMATIC INTRO CONTROLLER
+   ========================================================== */
+(function(){
+    const intro = document.getElementById("yashIntro");
+    const percent = document.getElementById("introPercent");
+    const particles = document.getElementById("introParticles");
+
+    if(!intro) return;
+
+    // Create a lightweight particle field.
+    for(let i = 0; i < 42; i++){
+        const p = document.createElement("span");
+        p.className = "intro-particle";
+        p.style.left = (Math.random() * 100) + "%";
+        p.style.top = (Math.random() * 100) + "%";
+        p.style.setProperty("--px", ((Math.random() - .5) * 180) + "px");
+        p.style.setProperty("--py", ((Math.random() - .5) * 180) + "px");
+        p.style.animationDelay = (Math.random() * 1.4) + "s";
+        p.style.animationDuration = (1.7 + Math.random() * 1.6) + "s";
+        particles.appendChild(p);
+    }
+
+    // Smooth loading percentage purely for the cinematic effect.
+    const start = performance.now();
+    const duration = 2600;
+
+    function tick(now){
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 2.2);
+        percent.textContent = String(Math.round(eased * 100)).padStart(2,"0");
+
+        if(progress < 1){
+            requestAnimationFrame(tick);
+        }
+    }
+    requestAnimationFrame(tick);
+
+    // Let the intro finish, then reveal the real YASH store.
+    const finish = function(){
+        intro.classList.add("hide");
+        document.body.classList.remove("intro-active");
+
+        setTimeout(function(){
+            intro.remove();
+        }, 1100);
+    };
+
+    // Slightly longer than the main logo animation for a cinematic reveal.
+    window.setTimeout(finish, 3400);
+})();
+</script>
 
 <script>
 /* ==========================================================
